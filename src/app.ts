@@ -15,9 +15,15 @@
 
 // Note: if u update any data in ts file but not build it to js file then it will show the old data only in js file. So always build it after updating the ts file by using npm run build or tsc command.
 
-// 1.
+// Example 1.
+let studentName: string = "Arham"; // specify the type of variable
+studentName = "Afnan"; // valid
+// studentName = 123; // invalid
+console.log(studentName);
+
+// Example 2.
 function greet(name: string): string {
-  // specify the type of parameter and and after the parameter return the type
+  // specify the type of parameter and after the parameter return the type of function which is string here
   return `Hello, ${name}!`;
 }
 
