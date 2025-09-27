@@ -1,5 +1,6 @@
 // student profile exercise
 
+// create a Student type with the following properties:
 type Student = {
   name: string;
   age: number;
@@ -9,6 +10,7 @@ type Student = {
   info: [string, number, boolean];
 };
 
+// create two student objects and set the type to Student
 const student1: Student = {
   name: "Arham",
   age: 7,

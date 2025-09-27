@@ -85,3 +85,5 @@ logMessage("working");
 // null and undefined
 let notAssigned: undefined = undefined;
 let emptyValue: null = null;
+
+// some exercises in exercise.ts file
