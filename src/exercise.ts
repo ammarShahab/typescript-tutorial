@@ -29,7 +29,7 @@ const student2: Student = {
   info: ["Afnan", 6, false],
 };
 
-// now create a function to display student profile
+// now create a function to display student profile and use void as it does not return any value
 function getStudentInfo(student: Student): void {
   console.log(`Name: ${student.name}`);
   console.log(`Age: ${student.age}`);
