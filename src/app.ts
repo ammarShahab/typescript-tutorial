@@ -15,27 +15,27 @@
 
 // Note: if u update any data in ts file but not build it to js file then it will show the old data only in js file. So always build it after updating the ts file by using npm run build or tsc command.
 
-// Example 1 Primitives
-// string
+// 1 Primitives
+// 1a. string
 let studentName: string = "Arham"; // specify the type of variable
 studentName = "Afnan"; // valid
 // studentName = 123; // invalid
 
-// number
+// 1b. number
 let age: number = 21; // specify the type of variable
 // age = "21"; // invalid
 age = 3; // valid
 
-// boolean
+// 1c. boolean
 let isStudent: boolean = true;
 isStudent = false; // valid
 // isStudent = "true"; // invalid
 
 console.log(studentName, age, isStudent);
 
-// Example 2 Non Primitives
+// 2. Non Primitives
 
-// Array
+// 2a. Array
 
 let scores: number[] = [90, 85, 88]; // specify the type of array
 scores[0] = 999; // valid
@@ -46,26 +46,20 @@ console.log(scores);
 let names: Array<string> = ["Arham", "Afnan", "Ammar"];
 console.log(names);
 
-// tuples (fixed length array)
+// 2b. tuples (fixed length array with known data type)
 // it is used to store multiple values of different types in a single variable
 
 let universityStudent: [string, number, boolean] = ["Adnan", 24, true]; // specify the type of tuple
 console.log("tuples example", universityStudent);
 
-function greet(name: string): string {
-  // specify the type of parameter and after the parameter return the type of function which is string here
-  return `Hello, ${name}!`;
-}
-
-console.log(greet("Arham"));
-
-// any type (not recommended, but it is used when we don't know the type of variable. but it is not safe to use any type because it can hold any type of value which can lead to runtime errors. it cannot be validated at compile time)
+// 3. Special Types
+// 3a. any type (not recommended, but it is used when we don't know the type of variable. but it is not safe to use any type because it can hold any type of value which can lead to runtime errors. it cannot be validated at compile time)
 let isLoggedIn: any = false; // specify the type of variable
 isLoggedIn = 123; // valid
 isLoggedIn = "yes"; // valid
 console.log("any", isLoggedIn);
 
-// unknown type (it is safer than "any" type because we have to check the type of variable before using it)
+// 3b. unknown type (it is safer than "any" type because we have to check the type of variable before using it)
 let data: unknown = "10";
 
 if (typeof data === "number") {
@@ -74,7 +68,7 @@ if (typeof data === "number") {
   console.log("data is not a number");
 }
 
-// void type (it is used to specify that a function does not return any value i.e কোনো কিছু রিটার্ন করে না এমন ফাংশনের জন্য ব্যবহার করা হয়)
+//3c. void type (it is used to specify that a function does not return any value i.e কোনো কিছু রিটার্ন করে না এমন ফাংশনের জন্য ব্যবহার করা হয়)
 function logMessage(action: string): void {
   console.log("void function", action);
   //   return "Non Void function";
@@ -82,8 +76,57 @@ function logMessage(action: string): void {
 
 logMessage("working");
 
-// null and undefined
+// 3d. null and undefined types
 let notAssigned: undefined = undefined;
 let emptyValue: null = null;
 
-// some exercises in exercise.ts file
+// some exercise-1 in exercise.ts file
+
+// 3e. Function type signature
+// Function type signature is a way to specify the type of a function. It is used to define the type of parameters and the return type of a function. It is also used to define the type of a variable that holds a function.
+let sayName: (name: string) => string; // specify the type of function
+
+sayName = function (name: string): string {
+  //here return is set as string because specify the type of function is set string in upper line
+  return `Hi ${name}`;
+};
+
+console.log(sayName("Rakib"));
+
+// Optional parameters in function
+// Optional parameter is set at last in the parameter of a function. from the following example if we provide parameter for optional it will show in result but if we not provide any parameter it will not give any error but do not show the optional result.
+function employeeInfo(name: string, age: number, designation?: string): string {
+  return `${name} is ${age} years old. Designation: ${
+    designation ? designation : "N/A"
+  }`;
+}
+
+console.log(employeeInfo("Muktadir", 34));
+console.log(employeeInfo("Hasan", 36, "Sr. Executive"));
+
+//Default parameters in function
+// set a default value for a parameter in case no argument is passed for that parameter
+function welcomeMSG(name: string = "Guest"): string {
+  return `Hello! ${name}`;
+}
+
+console.log(welcomeMSG());
+console.log(welcomeMSG("Bob"));
+
+// 3f. never type (advanced type)
+// never type is used to specify that a function never returns a value. it is used in functions that always throw an error or have an infinite loop.
+
+try {
+  function throwError(message: string): never {
+    throw new Error(message);
+  }
+  throwError("This is an error message");
+} catch (error) {
+  console.log(error);
+}
+
+// 3g. Arrow function
+const squareNum = (a: number): number => a * a;
+console.log(squareNum(5));
+
+// Exercise of calculator in calculator.ts file

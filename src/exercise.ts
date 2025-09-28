@@ -1,4 +1,4 @@
-// student profile exercise
+//Exercise-1: student profile exercise
 
 // create a Student type with the following properties:
 type Student = {
