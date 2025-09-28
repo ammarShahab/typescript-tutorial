@@ -38,7 +38,11 @@ function calculate(operator: string, a: number, b: number) {
       return power(a, b);
 
     default:
-      throw Error("Invalid Input");
+      try {
+        throw Error("Invalid Input");
+      } catch (error) {
+        console.log(error);
+      }
   }
 }
 
@@ -46,5 +50,5 @@ console.log("Addition", calculate("+", 10, 12));
 console.log("Subtraction", calculate("-", 10, 12));
 console.log("Multiplication", calculate("*", 10, 12));
 console.log("Division", calculate("/", 24, 12));
+calculate(")", 10, 12);
 console.log("Square", calculate("^", 10, 12));
-// console.log("Square", calculate(")", 10, 12));
