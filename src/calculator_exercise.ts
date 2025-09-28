@@ -20,22 +20,22 @@ function divide(a: number, b: number): number {
   return a / b;
 }
 
-function power(base: number, exponent: number = 2): number {
+function power(base: number, exponent: number): number {
   return Math.pow(base, exponent);
 }
 
-function calculate(operator: string, num1: number, num2: number) {
+function calculate(operator: string, a: number, b: number) {
   switch (operator) {
     case "+":
-      return add(num1, num2);
+      return add(a, b);
     case "-":
-      return subtract(num1, num2);
+      return subtract(a, b);
     case "*":
-      return multiple(num1, num2);
+      return multiple(a, b);
     case "/":
-      return divide(num1, num2);
+      return divide(a, b);
     case "^":
-      return power(num1, num2);
+      return power(a, b);
 
     default:
       throw Error("Invalid Input");
@@ -45,6 +45,6 @@ function calculate(operator: string, num1: number, num2: number) {
 console.log("Addition", calculate("+", 10, 12));
 console.log("Subtraction", calculate("-", 10, 12));
 console.log("Multiplication", calculate("*", 10, 12));
-console.log("Division", calculate("/", 0, 12));
+console.log("Division", calculate("/", 24, 12));
 console.log("Square", calculate("^", 10, 12));
 // console.log("Square", calculate(")", 10, 12));
