@@ -78,3 +78,21 @@ const car1: Car = {
 // v. for union or intersection types use type alias
 // vi. for primitive or function types use type alias
 // vii. flexibility: interface is more flexible than type alias. because you can extend interface but you cannot extend type alias.
+
+// example of using ineterface with extends keyword
+
+interface Animal {
+  name: string;
+  age: number;
+}
+
+interface Dog extends Animal {
+  breed: string;
+}
+
+const myDog: Dog = {
+  name: "Tommy",
+  age: 3,
+  breed: "Labrador",
+};
+console.log("Dog info:", myDog);
