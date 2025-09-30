@@ -1,4 +1,4 @@
-// Exercise: Make a user profile data using type alias and interface. Make another data as author
+// Exercise: Make a user profile data using type alias and interface.
 
 // Step-1: make a common interface using interface
 interface User {
@@ -7,7 +7,7 @@ interface User {
   age: number;
 }
 
-// Step-2: create an Author data
+// Step-2: create an Author data as the author can post a blog
 interface Author extends User {
   post: string[];
 }
