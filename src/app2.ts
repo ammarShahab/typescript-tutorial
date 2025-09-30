@@ -96,3 +96,5 @@ const myDog: Dog = {
   breed: "Labrador",
 };
 console.log("Dog info:", myDog);
+
+// Exercise in user_management.ts file
