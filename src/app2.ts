@@ -47,3 +47,34 @@ function actorInfo(actor: Actor): string {
 }
 console.log(actorInfo(actor1));
 console.log(actorInfo(actor2));
+
+// 5. type interface
+// Interface is similar to type alias. But interface can be extended. It is used to define the structure of an object. It is also used to define the type of a variable that holds an object.
+interface Car {
+  name: string;
+  model: string;
+  price: number;
+  isAvailable: boolean;
+}
+
+interface Car {
+  year?: number; // you can extend interface
+}
+
+const car1: Car = {
+  name: "Toyota",
+  model: "Corolla",
+  price: 20000,
+  isAvailable: true,
+  year: 2020,
+};
+
+// when to use type alias and when to use interface?
+
+// i. designing public API use interface
+// ii. for simple object use both are fine
+// iii. for complex object use interface
+// iv. when you need to use the same name: use interface
+// v. for union or intersection types use type alias
+// vi. for primitive or function types use type alias
+// vii. flexibility: interface is more flexible than type alias. because you can extend interface but you cannot extend type alias.
