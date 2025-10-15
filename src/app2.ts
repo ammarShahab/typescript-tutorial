@@ -39,13 +39,19 @@ const actor2: Actor = {
 };
 
 function actorInfo(actor: Actor): string {
+  const pronoun = actor.gender === "female" ? "She" : "He";
+  const anotherPronoun = actor.gender === "female" ? "Her" : "His";
   return `My favorite  ${
     actor.gender === "female" ? "actress" : "actor"
-  } name is ${actor.name}. He is a ${actor.gender} ${
+  } name is ${actor.name}. ${pronoun} is a ${actor.gender} ${
     actor.gender === "female" ? "actress" : "actor"
-  }. His age is ${actor.age}. He took ${actor.hiredAmount}$ per film.`;
+  }. ${anotherPronoun} age is ${actor.age}. ${pronoun} took ${
+    actor.hiredAmount
+  }$ per film. ${
+    actor.married ? `${pronoun} is married.` : `${pronoun} is not married.`
+  }`;
 }
-console.log(actorInfo(actor1));
+console.log(actorInfo(actor1), typeof actorInfo(actor1));
 console.log(actorInfo(actor2));
 
 // 5. type interface
@@ -97,4 +103,4 @@ const myDog: Dog = {
 };
 console.log("Dog info:", myDog);
 
-// Exercise in user_management.ts file
+// Exercise in user_profile.ts file
