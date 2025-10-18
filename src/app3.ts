@@ -148,3 +148,45 @@ const cat = new Cat();
 const dog = new Dog();
 makeSound(cat);
 makeSound(dog);
+
+// 8.d. creating a custom type guard
+// definition: it is used to check if a variable is of a specific type. it is used to ensure that the code is type-safe and to avoid runtime errors.
+
+// What is custom type guard?
+// A custom type guard is a function that returns a boolean value. It is used to check if a variable is of a specific type.
+
+type Fish = {
+  swim: () => void;
+};
+
+type Cow = {
+  walk: () => void;
+};
+
+// here returns the boolean value
+function isFish(pet: Fish | Cow): pet is Fish {
+  return (pet as Fish).swim !== undefined;
+}
+
+function movePet(pet: Fish | Cow) {
+  if (isFish(pet)) {
+    pet.swim();
+  } else {
+    pet.walk();
+  }
+}
+
+const fish: Fish = {
+  swim: () => {
+    console.log(`Myfish is swimming.`);
+  },
+};
+
+const cow: Cow = {
+  walk: () => {
+    console.log(`My cow is walking`);
+  },
+};
+
+movePet(cow);
+movePet(fish);
