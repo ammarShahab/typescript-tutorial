@@ -73,7 +73,7 @@ function processInput(input: string | number) {
 processInput(" Hello ");
 processInput(10);
 
-//8.a typeof type guard
+//8.a typeof operator type guard
 // definition: it is used to check the type of a variable at runtime. it is used to ensure that the code is type-safe and to avoid runtime errors. i.e same as type narrowing.
 
 function formatValue(value: string | number) {
@@ -113,10 +113,38 @@ const car1: Car = {
   },
 };
 const boat: Boat = {
-  drive: () => {
+  sail: () => {
     console.log("Boat is sailing");
   },
 };
 
 move(car1);
 move(boat);
+
+//8.c. instanceof type guard
+// definition: the instanceof operator is used to check if an object is an instance of specific class or a constructor function
+
+class Cat {
+  meow() {
+    console.log("Meow Meow");
+  }
+}
+
+class Dog {
+  woof() {
+    console.log("woof woof");
+  }
+}
+
+function makeSound(animal: Dog | Cat) {
+  if (animal instanceof Dog) {
+    animal.woof();
+  } else {
+    animal.meow();
+  }
+}
+
+const cat = new Cat();
+const dog = new Dog();
+makeSound(cat);
+makeSound(dog);
