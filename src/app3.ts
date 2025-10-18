@@ -155,6 +155,7 @@ makeSound(dog);
 // What is custom type guard?
 // A custom type guard is a function that returns a boolean value. It is used to check if a variable is of a specific type.
 
+// Example of custom type guard
 type Fish = {
   swim: () => void;
 };
@@ -190,5 +191,3 @@ const cow: Cow = {
 
 movePet(cow);
 movePet(fish);
-
-// ! tutorial timestamp: 04:28:00
