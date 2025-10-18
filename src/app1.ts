@@ -13,7 +13,7 @@
 
 // or if u only want to run the js file after build then command in terminal "node dist/app.js"
 
-// Note: if u update any data in ts file but not build it to js file then it will show the old data only in js file. So always build it after updating the ts file by using npm run build or tsc command.
+// Note: if u update any data in ts file but not build it to js file then it will show the old data only in js file. So always build it after updating the ts file by using "npm run build" or "tsc" or "npx tsc" command.
 
 // 1 Primitives
 // 1a. string
@@ -42,9 +42,13 @@ scores[0] = 999; // valid
 // scores[1] = "85"; // invalid
 console.log(scores);
 
+// conventional way to declare an array
+let employeeName: string[] = ["Hasan", "Muktadir", "Jahangir"];
+console.log("conventional way of array declaration", employeeName);
+
 // Alternative way to declare an array
 let names: Array<string> = ["Arham", "Afnan", "Ammar"];
-console.log(names);
+console.log("Alternative way for array declaration", names);
 
 // 2b. tuples (fixed length array with known data type)
 // it is used to store multiple values of different types in a single variable

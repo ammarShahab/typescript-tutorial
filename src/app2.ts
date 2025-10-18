@@ -40,31 +40,68 @@ const actor2: Actor = {
 };
 
 function actorInfo(actor: Actor): string {
+  const pronoun = actor.gender === "female" ? "She" : "He";
+  const anotherPronoun = actor.gender === "female" ? "Her" : "His";
   return `My favorite  ${
     actor.gender === "female" ? "actress" : "actor"
-  } name is ${actor.name}. He is a ${actor.gender} ${
+  } name is ${actor.name}. ${pronoun} is a ${actor.gender} ${
     actor.gender === "female" ? "actress" : "actor"
-  }. His age is ${actor.age}. He took ${actor.hiredAmount}$ per film.`;
+  }. ${anotherPronoun} age is ${actor.age}. ${pronoun} took ${
+    actor.hiredAmount
+  }$ per film. ${
+    actor.married ? `${pronoun} is married.` : `${pronoun} is not married.`
+  }`;
 }
-console.log(actorInfo(actor1));
+console.log(actorInfo(actor1), typeof actorInfo(actor1));
 console.log(actorInfo(actor2));
 
-// 5. interface
-// interface is similar to type alias but it is used to define the structure of an object. it is also used to define the structure of a class. it is also used to define the structure of a function. you can extend or reassign an interface.
-
-// merge the interface of a person
-interface Person {
+// 5. type interface
+// Interface is similar to type alias. But interface can be extended. It is used to define the structure of an object. It is also used to define the type of a variable that holds an object.
+interface Car {
   name: string;
+  model: string;
+  price: number;
+  isAvailable: boolean;
 }
 
-interface Person {
-  //merge the interface of a person
+interface Car {
+  year?: number; // you can extend interface
+}
+
+const car1: Car = {
+  name: "Toyota",
+  model: "Corolla",
+  price: 20000,
+  isAvailable: true,
+  year: 2020,
+};
+
+// when to use type alias and when to use interface?
+
+// i. designing public API use interface
+// ii. for simple object use both are fine
+// iii. for complex object use interface
+// iv. when you need to use the same name: use interface
+// v. for union or intersection types use type alias
+// vi. for primitive or function types use type alias
+// vii. flexibility: interface is more flexible than type alias. because you can extend interface but you cannot extend type alias.
+
+// example of using ineterface with extends keyword
+
+interface Animal {
+  name: string;
   age: number;
 }
 
-// but you can not merge type alias
-type Animal = {
-  name: string;
-};
+interface Dog extends Animal {
+  breed: string;
+}
 
-// type Animal = { age: number }; // error: Duplicate identifier 'Animal'.
+const myDog: Dog = {
+  name: "Tommy",
+  age: 3,
+  breed: "Labrador",
+};
+console.log("Dog info:", myDog);
+
+// Exercise in user_profile.ts file
