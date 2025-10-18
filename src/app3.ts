@@ -190,3 +190,5 @@ const cow: Cow = {
 
 movePet(cow);
 movePet(fish);
+
+// ! tutorial timestamp: 04:28:00
