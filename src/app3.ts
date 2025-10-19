@@ -191,3 +191,48 @@ const cow: Cow = {
 
 movePet(cow);
 movePet(fish);
+
+// a use case of type alias in mongodb database
+// define type with readonly where u cannot change the type of _id
+type Users = {
+  readonly _id: string;
+  name: string;
+  email: string;
+  isActive: boolean;
+  cardDetail?: creditCardDetail;
+};
+
+//at025._id="556565656" //unable to change the readonly data and shows error
+
+// adding creditCardDetails
+
+type creditCardNumber = {
+  cardNumber: number;
+};
+
+type creditCardExpiryDate = {
+  expiryDate: string;
+};
+
+type creditCardDetail = creditCardNumber &
+  creditCardExpiryDate & {
+    cvv: number;
+  };
+
+const cardDetail: creditCardDetail = {
+  cardNumber: 5624444,
+  expiryDate: "25/10/28",
+  cvv: 920,
+};
+
+const at025: Users = {
+  _id: "56447",
+  name: "Adnan",
+  email: "email@gmail.com",
+  isActive: false,
+  cardDetail: cardDetail,
+};
+
+console.log(at025);
+
+// the upper method is not the best way to add credit card details but you should know the process.
