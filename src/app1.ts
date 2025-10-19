@@ -15,6 +15,12 @@
 
 // Note: if u update any data in ts file but not build it to js file then it will show the old data only in js file. So always build it after updating the ts file by using "npm run build" or "tsc" or "npx tsc" command.
 
+// What is typescript
+// TypeScript is a programming language developed and maintained by Microsoft. It is a superset of JavaScript, meaning that any valid JavaScript code is also valid TypeScript code. TypeScript adds features such as static typing, interfaces, and classes to JavaScript, making it a more powerful and flexible language for building large-scale applications.
+
+// What is static typing?
+// Static typing is a feature of TypeScript that allows you to specify the type of a variable, function, or object at compile time. This means that the type of a variable is checked before the code is executed, which can help catch errors early in the development process.
+
 // 1 Primitives
 // 1a. string
 let studentName: string = "Arham"; // specify the type of variable
