@@ -51,17 +51,17 @@ class Vehicle implements Transport {
   }
 }
 
-class Truck extends Vehicle {
+class ElectricTruck extends Vehicle {
   charge() {
     console.log(
-      `Truck ${this.name} - ${this.model} - ${this.year} is charging.`
+      `ElectricTruck ${this.name} - ${this.model} - ${this.year} is charging.`
     );
     /* console.log(
-      `Truck ${this.name} - ${this.model} - ${this.year} - ${this.engineNumber}is charging.`
+      `ElectrTruck ${this.name} - ${this.model} - ${this.year} - ${this.engineNumber}is charging.`
     ); */ //but if you try to access the private property engineNumber, it will throw an error
   }
 }
 
-const truck1 = new Truck("Tesla", "CyberTruck");
+const truck1 = new ElectricTruck("Tesla", "CyberTruck");
 truck1.move();
 truck1.charge();
