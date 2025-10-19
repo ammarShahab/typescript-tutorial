@@ -33,3 +33,35 @@ payWithCreditCard.paymentProcess();
 
 const payWithPayPal = new payPalPayment(2500);
 payWithPayPal.paymentProcess();
+
+// Exercise: Vehicle Management system
+
+interface Transport {
+  name: string;
+  model: string;
+  move: () => void;
+}
+
+class Vehicle implements Transport {
+  protected year: number = 2025;
+  private engineNumber: number = 523554;
+  constructor(public name: string, public model: string) {}
+  move(): void {
+    console.log(`${this.name} truck, Model ${this.model} is moving.`);
+  }
+}
+
+class Truck extends Vehicle {
+  charge() {
+    console.log(
+      `Truck ${this.name} - ${this.model} - ${this.year} is charging.`
+    );
+    /* console.log(
+      `Truck ${this.name} - ${this.model} - ${this.year} - ${this.engineNumber}is charging.`
+    ); */ //but if you try to access the private property engineNumber, it will throw an error
+  }
+}
+
+const truck1 = new Truck("Tesla", "CyberTruck");
+truck1.move();
+truck1.charge();
