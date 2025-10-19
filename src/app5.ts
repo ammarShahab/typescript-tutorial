@@ -24,7 +24,7 @@ class payPalPayment implements IPayment {
   }
 
   paymentProcess() {
-    console.log(`Your paypal payment is ${this.amount}tk.`);
+    console.log(`Your paypal payment is ${this.amount}tk.`); //if u avoid any of the properties of interface, it will throw an error
   }
 }
 
