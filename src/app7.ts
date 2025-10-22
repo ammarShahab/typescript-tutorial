@@ -45,6 +45,7 @@ console.log(ehsan);
 // console.log(addId2("adnan")); //show error
 
 // Use case of Generics in interface
+// If u don't know the what type of data is coming in that case Generic is also used
 
 interface APIResponse<T> {
   //Here set the <T> as variable
