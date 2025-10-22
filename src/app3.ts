@@ -233,6 +233,35 @@ const at025: Users = {
   cardDetail: cardDetail,
 };
 
-console.log(at025);
+console.log("at025", at025);
 
 // the upper method is not the best way to add credit card details but you should know the process.
+
+// In that case we can use interface
+interface Client {
+  readonly _id: string;
+  name: string;
+  age: number;
+  email: string;
+  isActive: boolean;
+}
+
+// you can also reassign interface
+interface Client {
+  cardNumber: number;
+  expiryDate: string;
+  cvv: number;
+}
+
+const at026: Client = {
+  _id: "54456666622222",
+  name: "Adnan",
+  age: 37,
+  email: "ashahab007@gmail.com",
+  isActive: true,
+  cardNumber: 654412222,
+  expiryDate: "25/09/29",
+  cvv: 920,
+};
+
+console.log("at026", at026);

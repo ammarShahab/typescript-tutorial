@@ -109,6 +109,19 @@ myCar.showCarDetails(); // ✓ Can call public method
 // console.log(myCar.engineNumber); // ✗ ERROR: Cannot access private property from outside
 // console.log(myCar.brand); // ✗ ERROR: Cannot access protected property from outside
 
+// But the best industry standard practice is using type modifiers
+
+class Employee {
+  constructor(public name: string, public age: number, private _id: string) {}
+  showId() {
+    console.log("Hasan ID is: ", hasan._id);
+  }
+}
+
+const hasan = new Employee("Hasan", 35, "59004");
+console.log("type modifiers best practices", hasan);
+hasan.showId(); //access the private property from the class
+
 // 9d. Inheritance
 // Inheritance is a mechanism in which a new class is created from an existing class. The new class is called a subclass and the existing class is called a superclass.
 
