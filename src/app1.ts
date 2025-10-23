@@ -56,7 +56,7 @@ console.log("conventional way of array declaration", employeeName);
 let names: Array<string> = ["Arham", "Afnan", "Ammar"];
 console.log("Alternative way for array declaration", names);
 
-// 2b. tuples (fixed length array with known data type)
+// 2b. tuples (fixed length array with known data type with maintaining the order)
 // it is used to store multiple values of different types in a single variable
 
 let universityStudent: [string, number, boolean] = ["Adnan", 24, true]; // specify the type of tuple
