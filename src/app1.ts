@@ -13,7 +13,9 @@
 
 // or if u only want to run the js file after build then command in terminal "node dist/app.js"
 
-// Note: if u update any data in ts file but not build it to js file then it will show the old data only in js file. So always build it after updating the ts file by using "npm run build" or "tsc" or "npx tsc" command.
+// Note: i.) if u update any data in ts file but not build it to js file then it will show the old data only in js file. So always build it after updating the ts file by using "npm run build" or "tsc" or "npx tsc" command.
+
+// ii.) if u want to auto compile the ts file without building it to js file every time then run "tsc --w" or "npx tsc --w". then run only the file every time which is changed e.g. node dist/src/app1.js.
 
 // What is typescript
 // TypeScript is a programming language developed and maintained by Microsoft. It is a superset of JavaScript, meaning that any valid JavaScript code is also valid TypeScript code. TypeScript adds features such as static typing, interfaces, and classes to JavaScript, making it a more powerful and flexible language for building large-scale applications.
