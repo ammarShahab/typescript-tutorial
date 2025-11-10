@@ -115,7 +115,7 @@ console.log(formatValue(3.14159));
 // definition: it is used to check if a property exists in an object. it is used to ensure that the code is type-safe and to avoid runtime errors.i.e in is used যখন object এর property এর মধ্যে checking করবো।
 
 type Car = {
-  drive: () => void; //void function does not return any value
+  drive: () => void; //create type and make the function void i.e. it does not return any value
 };
 
 type Boat = {
