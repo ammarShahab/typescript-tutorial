@@ -265,5 +265,3 @@ const at026: Client = {
 };
 
 console.log("at026", at026);
-
-console.log("Hello TypeScript");
