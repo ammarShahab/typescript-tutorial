@@ -13,7 +13,7 @@ function studInfo(user: { name: string; age: number }) {
 console.log(studInfo(student));
 
 //  4b. Type alias
-// you cannot reassign type alias
+// type alias is used to define the structure of an object. It is also used to define the type of a variable that holds an object. you cannot reassign type alias.
 // example:
 
 type Actor = {
