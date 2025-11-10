@@ -13,6 +13,31 @@ getProductId(123456);
 
 //Note: use case of union type is in dynamic form input field. where user can input string or number and also in API response where the response can be of different types i.e dynamic api response type.
 
+// use case example of form response with api calls
+type FormResponse =
+  | { success: true; message: string }
+  | { success: false; errors: Record<string, string> }; //means object key and value pair
+
+async function formSubmit() {
+  const response: FormResponse = await fakeApi();
+  if (response.success) {
+    console.log(response.message);
+  } else {
+    console.log(response.errors);
+  }
+}
+
+function fakeApi(): Promise<FormResponse> {
+  const random = Math.random() > 0.5;
+  return Promise.resolve(
+    random
+      ? { success: true, message: "Form submitted successfully" }
+      : { success: false, errors: { email: "Invalid email format" } }
+  );
+}
+
+formSubmit();
+
 // 6b. Intersection type (&)
 // definition: it is used to combine multiple types into one. it is used when we want to combine multiple types into a single type. it is used when we want to create a new type that has all the properties of the existing types.
 
