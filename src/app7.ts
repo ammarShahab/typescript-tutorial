@@ -74,6 +74,21 @@ console.log(ehsan);
 // Now if u pass different data type it will show error. So using constraints will solve the problem
 // console.log(addId2("adnan")); //show error
 
+// Another example of problem using constraints is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error.
+function logLength<T>(params: T) {
+  console.log("Length is: ", params.length);
+}
+
+logLength<string>("Hellow Worl"); //11
+logLength<number>(123); //undefined without showing any error
+
+// to solve this use extends length as { length: number }
+function logLength2<T extends { length: number }>(params: T) {
+  console.log("Length 2 is: ", params.length);
+}
+logLength2<string>("Hellow World Hellow"); //19
+// logLength2<number>(123); //showing error with Type number does not satisfy the constraints { length: number }
+
 // Use case of Generics in interface
 // If u don't know the what type of data is coming in that case Generic is also used
 
