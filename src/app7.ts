@@ -3,6 +3,35 @@
 // What is Generics?
 // Generics is a feature in TypeScript that allows you to create reusable components that can work with different types of data. It is a way to define a type that can be used in multiple places in your code, without having to specify the type each time.
 
+// Why generics is used which is explained in the following concepts
+// if i have multiple data type and send to the same function  we have make a each function with each data type. It will be very difficult to maintain and it will be very hard to debug. So instead of that we use generics.
+
+function logString(input: string): void {
+  console.log(input);
+}
+function logNumber(input: number): void {
+  console.log(input);
+}
+function logBoolean(input: boolean): void {
+  console.log(input);
+}
+
+logString("Hello");
+logNumber(123);
+logBoolean(true);
+
+// from the upper example we can see that we have to write the same function for each data type. So  instead of that we use generics. Generics is used to create reusable components that can work with different types of data.
+
+// Example
+function logInput<T>(input: T) {
+  console.log(input);
+}
+
+logInput<string>("Generic");
+logInput<boolean>(false);
+logInput<number>(567);
+
+// Some other way to use generics
 const addId = function <T>(obj: T) {
   // here <T> is generics i.e it can be any type and set the T type to obj
   const id = Math.floor(Math.random() * 100);
@@ -14,18 +43,19 @@ type userType = {
   age: number;
 };
 
-const user: userType = {
+const user1: userType = {
   name: "Sabbir",
   age: 37,
 };
 
-const sabbir = addId(user);
+const sabbir = addId(user1);
 console.log(sabbir); //{ name: 'Sabbir', age: 37, id: 18 }
 
 // But the problem is if we pass any other type of data, it will not throw an error. It will just ignore the type and add the id property to the object.
-console.log(addId(9)); // { id: 92 }
+console.log("add Id", addId(true)); // { id: 92 }
 
-// To solve that see the following example
+// 13. Constraints
+// To solve the upper problem see the following example
 // We use extends with the datatype in the <T> which works as variable
 const addId2 = function <T extends userType>(obj: T) {
   const id = Math.floor(Math.random() * 1000000);
@@ -54,12 +84,21 @@ interface APIResponse<T> {
   data: T; //set the T as data type
 }
 
-const response: APIResponse<object> = {
+// sending object in a APIResponse
+const objectResponse: APIResponse<object> = {
   //here define the data type in a <> bracket
   status: 200,
   message: "Ok",
   data: {
-    //if u pass string data type it will show error
     name: "Ammar",
   },
+  //if u pass string data type it will show error
+  //name: 'Ammar', //show error type string is not assignable to type object
+};
+
+// sending boolean in a APIResponse. In that way u will create a one APIResponse and send multiple data type using generics
+const booleanResponse: APIResponse<boolean> = {
+  status: 200,
+  message: "Ok",
+  data: true,
 };

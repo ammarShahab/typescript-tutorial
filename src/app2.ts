@@ -65,7 +65,7 @@ interface Car {
 }
 
 interface Car {
-  year?: number; // you can extend interface
+  year?: number; // you can reassign interface
 }
 
 const car1: Car = {

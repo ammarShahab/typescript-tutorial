@@ -1,4 +1,4 @@
-// 13. Enum Type
+// 14. Enum Type
 
 // What is Enum Type?
 // Enum is a type that represents a set of named constants. It is used to define a group of related values that have a fixed set of possible values. It is also used to define a set of related constants that can be used to represent a specific set of values. You can use both only enums and const enums.

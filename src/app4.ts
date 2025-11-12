@@ -45,16 +45,16 @@ class BankAccount {
 
   showBalance() {
     console.log(
-      `${this.accountHolderName} account balance is ${this.balance}tk.`
+      `${this.accountHolderName} account balance is ${this.balance}tk. His account type is ${this.accountType}.`
     );
   }
 }
 
 const user1 = new BankAccount("Arham", 1000);
-console.log(user1.accountHolderName); //can access public property from outside the class
-user1.showBalance();
+console.log("Account Holder Name", user1.accountHolderName); //can access public property from outside the class
 
-// but u cannot access the private and protected property from outside the class
+// but u cannot access the private and protected property from outside the class but as the showBalance is within the class, it can access the private and protected property
+user1.showBalance();
 // console.log(user1.balance); //due to private
 // console.log(user1.accountType); //due to protected
 
@@ -62,7 +62,9 @@ user1.showBalance();
 class SavingAccount extends BankAccount {
   showAccountType() {
     console.log(
-      `${this.accountHolderName}'s accont type is ${this.accountType}.`
+      `${this.accountHolderName}'s account type is ${this.accountType}.`
+      // but if u want to access the balance property from outside the class according to following example, it will show error
+      // `${this.accountHolderName}'s account type is ${this.accountType}. Balance is ${this.balance}tk.`
     );
   }
 }
@@ -98,8 +100,8 @@ class Car extends Vehicle {
 
   showCarDetails() {
     // console.log(`Engine: ${this.engineNumber}`); // ✗ ERROR: Cannot access private property from parent class
-    console.log(`Brand: ${this.brand}`); // ✓ Can access protected property from parent class
     console.log(`Model: ${this.model}`); // ✓ Can access private property within the same class
+    console.log(`Brand: ${this.brand}`); // ✓ Can access protected property from parent class
   }
 }
 
@@ -114,7 +116,7 @@ myCar.showCarDetails(); // ✓ Can call public method
 class Employee {
   constructor(public name: string, public age: number, private _id: string) {}
   showId() {
-    console.log("Hasan ID is: ", hasan._id);
+    console.log("Hasan ID is: ", this._id);
   }
 }
 
@@ -127,7 +129,7 @@ hasan.showId(); //access the private property from the class
 
 class Animal {
   constructor(private name: string) {
-    this.name = name;
+    // this.name = name;
   }
   move() {
     return `${this.name} is moving`;

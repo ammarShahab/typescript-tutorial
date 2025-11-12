@@ -43,8 +43,8 @@ interface Transport {
 }
 
 class Vehicle implements Transport {
-  protected year: number = 2025;
   private engineNumber: number = 523554;
+  protected year: number = 2025;
   constructor(public name: string, public model: string) {}
   move(): void {
     console.log(`${this.name} truck, Model ${this.model} is moving.`);

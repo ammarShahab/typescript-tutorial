@@ -18,10 +18,10 @@
 // ii.) if u want to auto compile the ts file without building it to js file every time then run "tsc --w" or "npx tsc --w". then run only the file every time which is changed e.g. node dist/src/app1.js.
 
 // What is typescript
-// TypeScript is a programming language developed and maintained by Microsoft. It is a superset of JavaScript, meaning that any valid JavaScript code is also valid TypeScript code. TypeScript adds features such as static typing, interfaces, and classes to JavaScript, making it a more powerful and flexible language for building large-scale applications.
+// TypeScript is a programming language developed and maintained by Microsoft. It is a superset of JavaScript, meaning that any valid JavaScript code is also valid TypeScript code. TypeScript adds features such as static typing, interfaces, and classes to JavaScript, making it a more powerful and flexible language for building large-scale applications. অর্থাৎ JavaScript-এর উপর ভিত্তি করে তৈরি একটি প্রোগ্রামিং ভাষা, যেটি টাইপ সিস্টেম (type system) যোগ করে।
 
 // What is static typing?
-// Static typing is a feature of TypeScript that allows you to specify the type of a variable, function, or object at compile time. This means that the type of a variable is checked before the code is executed, which can help catch errors early in the development process.
+// Static typing is a feature of TypeScript that allows you to specify the type of a variable, function, or object at compile time. This means that the type of a variable is checked before the code is executed, which can help catch errors early in the development process or in compile-time checks.
 
 // 1 Primitives
 // 1a. string

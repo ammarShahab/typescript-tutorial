@@ -25,7 +25,7 @@ class Student {
   }
 
   private deleteToken() {
-    console.log("Token Delted Successfully");
+    console.log("Token Deleted Successfully");
   }
 
   // protected data is accessible within the class and its subclasses
