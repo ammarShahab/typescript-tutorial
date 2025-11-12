@@ -4,7 +4,7 @@
 // Generics is a feature in TypeScript that allows you to create reusable components that can work with different types of data. It is a way to define a type that can be used in multiple places in your code, without having to specify the type each time.
 
 // Why generics is used which is explained in the following concepts
-// if i have multiple data type and send to the same function  we have make a each function with each data type. It will be very difficult to maintain and it will be very hard to debug. So instead of that we use generics.
+// if i have multiple data type and send to the same function  we have make a each function with each data type. It will be very difficult to maintain and it will be very hard to debug. See the following example
 
 function logString(input: string): void {
   console.log(input);
@@ -24,9 +24,11 @@ logBoolean(true);
 
 // Example
 function logInput<T>(input: T) {
+  // here <T> is generics i.e it can be any type and set the T type to input
   console.log(input);
 }
 
+// call the function
 logInput<string>("Generic");
 logInput<boolean>(false);
 logInput<number>(567);
@@ -54,7 +56,7 @@ console.log(sabbir); //{ name: 'Sabbir', age: 37, id: 18 }
 // But the problem is if we pass any other type of data, it will not throw an error. It will just ignore the type and add the id property to the object.
 console.log("add Id", addId(true)); // { id: 92 }
 
-// 13. Constraints
+// 13. Constraints (give the rule using extends)
 // To solve the upper problem see the following example
 // We use extends with the datatype in the <T> which works as variable
 const addId2 = function <T extends userType>(obj: T) {
@@ -74,7 +76,7 @@ console.log(ehsan);
 // Now if u pass different data type it will show error. So using constraints will solve the problem
 // console.log(addId2("adnan")); //show error
 
-// Another example of problem using constraints is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error.
+// Another example of problem using constraints is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error after compilation, it shows undefined after compilation.
 function logLength<T>(params: T) {
   console.log("Length is: ", params.length);
 }
@@ -82,7 +84,7 @@ function logLength<T>(params: T) {
 logLength<string>("Hellow Worl"); //11
 logLength<number>(123); //undefined without showing any error
 
-// to solve this use extends length as { length: number }
+// to solve this use extends length as { length: number } i.e set the rule where type of length will be number
 function logLength2<T extends { length: number }>(params: T) {
   console.log("Length 2 is: ", params.length);
 }
