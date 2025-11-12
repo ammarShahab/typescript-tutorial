@@ -71,7 +71,7 @@ const user2 = {
 const ehsan = addId2(user2);
 console.log(ehsan);
 
-// Now if u pass different data type it will show error
+// Now if u pass different data type it will show error. So using constraints will solve the problem
 // console.log(addId2("adnan")); //show error
 
 // Use case of Generics in interface
