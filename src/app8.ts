@@ -82,7 +82,7 @@ console.log(findWeekend(Weekdays.Saturday));
 
 enum PostStatus {
   Draft = "Draft",
-  Archieved = "Archieved",
+  Archived = "Archived",
   Delete = "Deleted",
 }
 
@@ -94,8 +94,8 @@ type Post = {
 
 const post1: Post = {
   title: "Typescript Tutorials",
-  description: "Helloe  Typescript which gives the javascript a super power",
-  status: PostStatus.Archieved,
+  description: "Hello  Typescript which gives the javascript a super power",
+  status: PostStatus.Archived,
 };
 
 console.log("Exercise of post1: ", post1.status);
