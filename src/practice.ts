@@ -86,3 +86,21 @@ const adnan = new SavingAccount("Adnan", "Savings", 10000);
 console.log(adnan.name);
 console.log(adnan.getAccountType());
 adnan.getAccountBalance();
+
+// Generics
+function logData<T extends userData>(user: T) {
+  console.log(user);
+}
+
+type userData = {
+  name: string;
+  age: number;
+};
+
+const sabbir = {
+  name: "Sabbir",
+  age: 38,
+  country: "bd",
+};
+logData(sabbir);
+// logData(true);
