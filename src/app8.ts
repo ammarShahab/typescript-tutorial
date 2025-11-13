@@ -3,9 +3,10 @@
 // What is Enum Type?
 // Enum is a type that represents a set of named constants. It is used to define a group of related values that have a fixed set of possible values. It is also used to define a set of related constants that can be used to represent a specific set of values. You can use both only enums and const enums.
 
-// Types of enums
+// Types of enums and the use case
 
 // i. Numeric enums (it will by default returns numeric value)
+// used for Position or Direction
 enum Keys {
   Up,
   Down,
@@ -14,9 +15,21 @@ enum Keys {
 }
 
 console.log(Keys.Up); //0
-console.log(Keys.Right); //0
+console.log(Keys.Right); //3
+
+// Another use case is for Role
+
+enum Role {
+  Guest,
+  User,
+  Admin,
+}
+
+const role = Role.Admin;
+console.log("role", role);
 
 // ii. String Enum (enums এ string value set করে দেয়া হয়।)
+// used for HTTP or API call status
 
 const enum Status {
   Active = "Active",
@@ -24,8 +37,8 @@ const enum Status {
   Reject = "Reject",
 }
 
-console.log(Status.Active);
-console.log(Status.Reject);
+console.log(Status.Active); //Active
+console.log(Status.Reject); //Reject
 
 // iii. Heterogeneous Enum (যখন Enum-এ নিউমেরিক এবং স্ট্রিং উভয় ধরনের মান একসাথে থাকে, তখন তাকে বলা হয় Heterogeneous Enum)
 
@@ -34,8 +47,15 @@ enum Responses {
   Failure = "Failed",
 }
 
-console.log(Responses.Success);
-console.log(Responses.Failure);
+console.log(Responses.Success); //1
+console.log(Responses.Failure); //Failed
+
+// use case for toggle states or mode
+enum Mode {
+  Dark,
+  Light,
+}
+console.log("Mode", Mode.Light);
 
 //Exercise: create a function to find weekend
 
@@ -56,3 +76,34 @@ function findWeekend(days: Weekdays): boolean {
 console.log(findWeekend(Weekdays.Friday));
 console.log(findWeekend(Weekdays.Monday));
 console.log(findWeekend(Weekdays.Saturday));
+
+// Exercise on enums
+// if u have some post and the post contains some fixed status which is unchanged. Implement enums for post status.
+
+enum PostStatus {
+  Draft = "Draft",
+  Archieved = "Archieved",
+  Delete = "Deleted",
+}
+
+type Post = {
+  title: string;
+  description: string;
+  status: PostStatus;
+};
+
+const post1: Post = {
+  title: "Typescript Tutorials",
+  description: "Helloe  Typescript which gives the javascript a super power",
+  status: PostStatus.Archieved,
+};
+
+console.log("Exercise of post1: ", post1.status);
+
+const post2: Post = {
+  title: "Javascript Tutorials",
+  description: "Hello Javascript which gives the web development a super power",
+  status: PostStatus.Draft,
+};
+
+console.log("Exercise of post2: ", post2.status);
