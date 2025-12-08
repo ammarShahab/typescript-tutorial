@@ -65,11 +65,23 @@ let universityStudent: [string, number, boolean] = ["Adnan", 24, true]; // speci
 console.log("tuples example", universityStudent);
 
 // 3. Special Types
+
 // 3a. any type (not recommended, but it is used when we don't know the type of variable. but it is not safe to use any type because it can hold any type of value which can lead to runtime errors. it cannot be validated at compile time)
 let isLoggedIn: any = false; // specify the type of variable
 isLoggedIn = 123; // valid
 isLoggedIn = "yes"; // valid
 console.log("any", isLoggedIn);
+
+// use case of any types
+// 3a.i. JSON.parse returns "any" type because it does not recognise the type during compile time
+const result = JSON.parse('{"name" : "Alice", "age":"30"}');
+console.log(result);
+
+// 3a. ii. variable without initialization
+let something;
+something = "Adnan";
+something = 90;
+console.log(something);
 
 // 3b. unknown type (it is safer than "any" type because we have to check the type of variable before using it)
 let data: unknown = "10";
