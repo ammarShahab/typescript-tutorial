@@ -12,7 +12,7 @@ function studInfo(user: { name: string; age: number }) {
 
 console.log(studInfo(student));
 
-//  4b. Type alias
+// 4b. Type alias
 // type alias is used to define the structure of an object. It is also used to define the type of a variable that holds an object. you cannot reassign type alias.
 // example:
 
@@ -42,17 +42,22 @@ const actor2: Actor = {
 function actorInfo(actor: Actor): string {
   const pronoun = actor.gender === "female" ? "She" : "He";
   const anotherPronoun = actor.gender === "female" ? "Her" : "His";
-  return `My favorite  ${
-    actor.gender === "female" ? "actress" : "actor"
-  } name is ${actor.name}. ${pronoun} is a ${actor.gender} ${
-    actor.gender === "female" ? "actress" : "actor"
-  }. ${anotherPronoun} age is ${actor.age}. ${pronoun} took ${
-    actor.hiredAmount
-  }$ per film. ${
+  const chooseActorActress = actor.gender === "female" ? "actress" : "actor";
+  return `My favorite  ${chooseActorActress} name is ${
+    actor.name
+  }. ${pronoun} is a ${
+    actor.gender
+  } ${chooseActorActress}. ${anotherPronoun} age is ${
+    actor.age
+  }. ${pronoun} took ${actor.hiredAmount}$ per film. ${
     actor.married ? `${pronoun} is married.` : `${pronoun} is not married.`
   }`;
 }
-console.log(actorInfo(actor1), typeof actorInfo(actor1));
+console.log(
+  actorInfo(actor1),
+  "Type of actor info is: ",
+  typeof actorInfo(actor1)
+);
 console.log(actorInfo(actor2));
 
 // 5. type interface
@@ -63,6 +68,8 @@ interface Car {
   price: number;
   isAvailable: boolean;
 }
+
+// Reassigning the interface
 
 interface Car {
   year?: number; // you can reassign interface
@@ -86,7 +93,7 @@ const car1: Car = {
 // vi. for primitive or function types use type alias
 // vii. flexibility: interface is more flexible than type alias. because you can extend interface but you cannot extend type alias.
 
-// example of using ineterface with extends keyword
+// extends ineterface with keyword extends
 
 interface Animal {
   name: string;
