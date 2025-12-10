@@ -137,6 +137,7 @@ const car1: Car = {
     console.log("Car is driving");
   },
 };
+
 const boat: Boat = {
   sail: () => {
     console.log("Boat is sailing");
