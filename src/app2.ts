@@ -83,17 +83,7 @@ const car1: Car = {
   year: 2020,
 };
 
-// when to use type alias and when to use interface?
-
-// i. designing public API use interface
-// ii. for simple object use both are fine
-// iii. for complex object use interface
-// iv. when you need to use the same name: use interface
-// v. for union or intersection types use type alias
-// vi. for primitive or function types use type alias
-// vii. flexibility: interface is more flexible than type alias. because you can extend interface but you cannot extend type alias.
-
-// extends ineterface with keyword extends
+// extends the ineterface with keyword extends
 
 interface Animal {
   name: string;
@@ -110,5 +100,15 @@ const myDog: Dog = {
   breed: "Labrador",
 };
 console.log("Dog info:", myDog);
+
+// when to use type alias and when to use interface?
+
+// i. designing public API use interface
+// ii. for simple object use both are fine
+// iii. for complex object use interface
+// iv. when you need to use the same name: use interface
+// v. for union or intersection types use type alias
+// vi. for primitive or function types use type alias
+// vii. flexibility: interface is more flexible than type alias. because you can extend interface but you cannot extend type alias.
 
 // Exercise in user_profile.ts file
