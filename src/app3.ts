@@ -1,6 +1,6 @@
-//6. Advance types (Union and intersection types)
+//! 6. Advance types (Union and intersection types)
 
-//6a. Union types (| = works as or i.e একটা value এর ক্ষেত্রে দুইটা type use করা যায়)
+//! 6a. Union types (| = works as or i.e একটা value এর ক্ষেত্রে দুইটা type use করা যায়)
 
 type ProductId = string | number;
 
@@ -38,7 +38,7 @@ function fakeApi(): Promise<FormResponse> {
 
 formSubmit();
 
-// 6b. Intersection type (&)
+//! 6b. Intersection type (&)
 // definition: it is used to combine multiple types into one. it is used when we want to combine multiple types into a single type. it is used when we want to create a new type that has all the properties of the existing types.
 
 type User = {
@@ -66,7 +66,7 @@ function userInfo(object: AdminUser) {
 
 userInfo(user1);
 
-//7. Literal types
+//! 7. Literal types
 // definition: it is used to specify the exact value a string or number must have. it is used when we want to restrict a variable to a specific set of values.
 
 //Example: if i have button with different action then we can use Literal types
@@ -83,7 +83,7 @@ getButtonAction("Submit");
 
 // Note: Also use as Light mode or Dark mode theme in website
 
-//8. Type Narrowing
+//! 8. Type Narrowing
 
 // definition: it is the process of refining a variable's type to a more specific type. it is used when we want to perform different operations based on the type of a variable. it is used to ensure that the code is type-safe and to avoid runtime errors. i.e কোন একটা নির্দিষ্ট type কে নির্দিষ্ট operation করানো।
 
@@ -98,7 +98,7 @@ function processInput(input: string | number) {
 processInput(" Hello ");
 processInput(10);
 
-//8.a typeof operator type guard
+//! 8.a typeof operator type guard
 // definition: it is used to check the type of a variable at runtime. it is used to ensure that the code is type-safe and to avoid runtime errors. i.e same as type narrowing.
 
 function formatValue(value: string | number) {
@@ -146,7 +146,7 @@ const boat: Boat = {
 move(car1);
 move(boat);
 
-//8.c. instanceof type guard
+//! 8.c. instanceof type guard
 // definition: the instanceof operator is used to check if an object is an instance of specific class or a constructor function
 
 class Cat {
@@ -174,7 +174,7 @@ const dog = new Dog();
 makeSound(cat);
 makeSound(dog);
 
-// 8.d. creating a custom type guard
+//! 8.d. creating a custom type guard
 // definition: it is used to check if a variable is of a specific type. it is used to ensure that the code is type-safe and to avoid runtime errors.
 
 // What is custom type guard?
