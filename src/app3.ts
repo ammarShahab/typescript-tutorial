@@ -1,6 +1,7 @@
 //! 6. Advance types (Union and intersection types)
 
 //! 6a. Union types (| = works as or i.e একটা value এর ক্ষেত্রে দুইটা type use করা যায়)
+// definition: it is used to define a variable that can hold multiple types. it is used when we want to allow a variable to hold more than one type of value.
 
 type ProductId = string | number;
 
@@ -84,8 +85,7 @@ getButtonAction("Submit");
 // Note: Also use as Light mode or Dark mode theme in website
 
 //! 8. Type Narrowing
-
-// definition: it is the process of refining a variable's type to a more specific type. it is used when we want to perform different operations based on the type of a variable. it is used to ensure that the code is type-safe and to avoid runtime errors. i.e কোন একটা নির্দিষ্ট type কে নির্দিষ্ট operation করানো।
+// definition: it is the process of refining a variable's type to a more specific type. It is used when we want to perform different operations based on the type of a variable. i.e কোন একটা নির্দিষ্ট type কে নির্দিষ্ট operation করানো।
 
 function processInput(input: string | number) {
   if (typeof input === "number") {
@@ -112,7 +112,7 @@ console.log(formatValue("hello"));
 console.log(formatValue(3.14159));
 
 //! 8.b. in operator type guard
-// definition: it is used to check if a property exists in an object. it is used to ensure that the code is type-safe and to avoid runtime errors.i.e in is used যখন object এর property এর মধ্যে checking করবো।
+// definition: it is used to check if a property exists in an object i.e "in" is used যখন object এর property এর মধ্যে checking করবো।
 
 type Car = {
   drive: () => void; //create type and make the function void i.e. it does not return any value
@@ -147,7 +147,7 @@ move(car1);
 move(boat);
 
 //! 8.c. instanceof type guard
-// definition: the instanceof operator is used to check if an object is an instance of specific class or a constructor function
+// definition: the instanceof operator is used to check if an object is an instance of specific class or any class in its prototype chain or a constructor function
 
 class Cat {
   meow() {
