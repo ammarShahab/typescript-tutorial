@@ -33,6 +33,35 @@ logInput<string>("Generic");
 logInput<boolean>(false);
 logInput<number>(567);
 
+// Use case of Generics in interface
+// If u don't know the what type of data is coming in that case Generic is also used
+
+interface APIResponse<T> {
+  //Here set the <T> as variable
+  status: number;
+  message: string;
+  data: T; //set the T as data type
+}
+
+// sending object in a APIResponse
+const objectResponse: APIResponse<object> = {
+  //here define the data type in a <> bracket
+  status: 200,
+  message: "Ok",
+  data: {
+    name: "Ammar",
+  },
+  //if u pass string data type it will show error
+  //name: 'Ammar', //show error type string is not assignable to type object
+};
+
+// sending boolean in a APIResponse. In that way u will create a one APIResponse and send multiple data type using generics
+const booleanResponse: APIResponse<boolean> = {
+  status: 200,
+  message: "Ok",
+  data: true,
+};
+
 // Some other way to use generics
 const addId = function <T>(obj: T) {
   // here <T> is generics i.e it can be any type and set the T type to obj
@@ -71,54 +100,26 @@ const user2 = {
 };
 
 const ehsan = addId2(user2);
-console.log(ehsan);
+console.log(ehsan); //{ name: 'Ehsan', age: 37, country: 'Bangladesh', id: 429923 }
 
 // Now if u pass different data type it will show error. So using constraints will solve the problem
-// console.log(addId2("adnan")); //show error
+// console.log(addId2(true)); //show error
 
-// Another example of problem using constraints is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error after compilation, it shows undefined after compilation.
+// Another example of problem using Generic is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error after compilation, it shows undefined after compilation.
 function logLength<T>(params: T) {
-  // console.log("Length is: ", params.length);
+  console.log("Log Length is: ", params.length);
 }
 
 logLength<string>("Hellow Worl"); //showing error
+logLength<string[]>(["a", "b"]); //2
 logLength<number>(123); //undefined without showing any error
-// logLength<Array>(["a", "b"]); //undefined without showing any error
 
-// to solve this use extends length as { length: number } i.e set the rule where type of length will be number
+// to solve this we use Constraints and extends length as { length: number } i.e set the rule where type of length will be number
 function logLength2<T extends { length: number }>(params: T) {
-  console.log("Length 2 is: ", params.length);
+  console.log("Log Length 2 is: ", params.length);
 }
 logLength2<string>("Hellow World Hellow"); //19
 // logLength2<number>(123); //showing error with Type number does not satisfy the constraints { length: number }
-
-// Use case of Generics in interface
-// If u don't know the what type of data is coming in that case Generic is also used
-
-interface APIResponse<T> {
-  //Here set the <T> as variable
-  status: number;
-  message: string;
-  data: T; //set the T as data type
-}
-
-// sending object in a APIResponse
-const objectResponse: APIResponse<object> = {
-  //here define the data type in a <> bracket
-  status: 200,
-  message: "Ok",
-  data: {
-    name: "Ammar",
-  },
-  //if u pass string data type it will show error
-  //name: 'Ammar', //show error type string is not assignable to type object
-};
-
-// sending boolean in a APIResponse. In that way u will create a one APIResponse and send multiple data type using generics
-const booleanResponse: APIResponse<boolean> = {
-  status: 200,
-  message: "Ok",
-  data: true,
-};
+logLength2<string[]>(["b", "c", "d"]);
 
 // Constraints exercise in apiResponse.ts file

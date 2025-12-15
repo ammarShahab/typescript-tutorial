@@ -12,7 +12,7 @@ class Student {
     return `Name: ${this.name} is in ${this.semester} semester`;
   }
 
-  public get courseCount(): number {
+  get courseCount(): number {
     return this._courseNumber;
   }
 
@@ -35,8 +35,8 @@ class Student {
 }
 
 const amir = new Student("Amir", 3);
-console.log(amir.studentInfo);
-console.log(amir.courseCount);
+console.log("Student Info: ", amir.studentInfo);
+console.log("Course Count: ", amir.courseCount);
 
 // cannot access the private property from outside the class which is only accessible within the class
 // amir.deleteToken() //shows error
