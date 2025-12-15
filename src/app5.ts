@@ -46,8 +46,10 @@ class Vehicle implements Transport {
   private engineNumber: number = 523554;
   protected year: number = 2025;
   constructor(public name: string, public model: string) {}
-  move(): void {
-    console.log(`${this.name} truck, Model ${this.model} is moving.`);
+  move() {
+    console.log(
+      `${this.name} truck that's engine number is ${this.engineNumber}, Model ${this.model} is moving.`
+    );
   }
 }
 
@@ -62,6 +64,16 @@ class ElectricTruck extends Vehicle {
   }
 }
 
+class AutoMobileCar extends Vehicle {
+  fuelRefill() {
+    console.log(
+      `Auto mobile car ${this.name} - ${this.model} - ${this.year} is refueling.`
+    );
+  }
+}
+
 const truck1 = new ElectricTruck("Tesla", "CyberTruck");
 truck1.move();
 truck1.charge();
+const automobilecar = new AutoMobileCar("Toyota", "Fielder");
+automobilecar.fuelRefill();

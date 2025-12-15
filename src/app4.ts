@@ -52,9 +52,9 @@ class BankAccount {
 
 const user1 = new BankAccount("Arham", 1000);
 console.log("Account Holder Name", user1.accountHolderName); //can access public property from outside the class
+user1.showBalance(); //can access public property from outside the class
 
-// but u cannot access the private and protected property from outside the class but as the showBalance is within the class, it can access the private and protected property
-user1.showBalance();
+// but u cannot access the private and protected property from outside the class
 // console.log(user1.balance); //due to private
 // console.log(user1.accountType); //due to protected
 
@@ -63,7 +63,7 @@ class SavingAccount extends BankAccount {
   showAccountType() {
     console.log(
       `${this.accountHolderName}'s account type is ${this.accountType}.`
-      // but if u want to access the balance property from outside the class according to following example, it will show error
+      // but if u want to access the balance property from outside the class according to following example, it will show error because balance is a private property which cannot be accessed from subclasses, only accessible within the class.
       // `${this.accountHolderName}'s account type is ${this.accountType}. Balance is ${this.balance}tk.`
     );
   }
@@ -86,7 +86,7 @@ class Vehicle {
   }
 
   showEngineNumber() {
-    console.log(`Engine Number: ${this.engineNumber}`); // ✓ Can access private property within the same class
+    console.log(`Engine Number: ${this.engineNumber}`);
   }
 }
 
@@ -99,20 +99,19 @@ class Car extends Vehicle {
   }
 
   showCarDetails() {
-    // console.log(`Engine: ${this.engineNumber}`); // ✗ ERROR: Cannot access private property from parent class
+    // console.log(`Engine: ${this.engineNumber}`); // ✗ ERROR: Cannot access private property from parent class in the subclass
     console.log(`Model: ${this.model}`); // ✓ Can access private property within the same class
-    console.log(`Brand: ${this.brand}`); // ✓ Can access protected property from parent class
+    console.log(`Brand: ${this.brand}`); // ✓ Can access protected property brand from parent class in the subclass
   }
 }
 
 const myCar = new Car("ENG123456", "Toyota", "Camry");
 myCar.showEngineNumber(); // ✓ Can call public method
 myCar.showCarDetails(); // ✓ Can call public method
-// console.log(myCar.engineNumber); // ✗ ERROR: Cannot access private property from outside
-// console.log(myCar.brand); // ✗ ERROR: Cannot access protected property from outside
+// console.log(myCar.engineNumber); // ✗ ERROR: Cannot access private property from outside the class
+// console.log(myCar.brand); // ✗ ERROR: Cannot access protected property from outside the class
 
 // But the best industry standard practice is using type modifiers
-
 class Employee {
   constructor(public name: string, public age: number, private _id: string) {}
   showId() {
@@ -144,3 +143,40 @@ class Dog extends Animal {
 
 const mydog = new Dog("Tommy");
 console.log(`${mydog.move()} and barking ${mydog.bark()}`);
+
+// when the property is not required for all subclasses use optional (?) at the end line
+class Creature {
+  constructor(
+    public name: string,
+    protected price: number,
+    private type?: string //this optional sign should be at the end nor it will show error
+  ) {}
+
+  showCreatureInfo() {
+    console.log(
+      `${this.name} is a ${this.type} breed. It's price is ${this.price}$.`
+    );
+  }
+}
+
+const tommy = new Creature("Tommy", 500, "labrador");
+tommy.showCreatureInfo();
+
+// console.log(tommy.breed);
+// console.log(tommy.price);
+
+class Cat extends Creature {
+  constructor(name: string, price: number, private category: string) {
+    super(name, price);
+  }
+  showCatInfo() {
+    console.log(
+      `${this.name} is a ${this.category} which costs ${this.price}$`
+    );
+  }
+}
+
+const kitty = new Cat("Kitty", 250, "Cat");
+kitty.showCatInfo();
+console.log(kitty.name);
+console.log(tommy.name);
