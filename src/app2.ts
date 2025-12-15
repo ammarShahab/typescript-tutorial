@@ -1,5 +1,5 @@
-// 4. Object type and type alias
-// 4a. Object structure typing
+//! 4. Object type and type alias
+//! 4a. Object structure typing
 
 const student = {
   name: "Adnan Sami",
@@ -12,7 +12,7 @@ function studInfo(user: { name: string; age: number }) {
 
 console.log(studInfo(student));
 
-// 4b. Type alias
+//! 4b. Type alias
 // type alias is used to define the structure of an object. It is also used to define the type of a variable that holds an object. you cannot reassign type alias.
 // example:
 
@@ -60,7 +60,7 @@ console.log(
 );
 console.log(actorInfo(actor2));
 
-// 5. type interface
+//! 5. type interface
 // Interface is similar to type alias. But interface can be extended. It is used to define the structure of an object. It is also used to define the type of a variable that holds an object.
 interface Car {
   name: string;
@@ -100,18 +100,6 @@ const myDog: Dog = {
   breed: "Labrador",
 };
 console.log("Dog info:", myDog);
-
-// when to use type alias and when to use interface?
-
-// i. designing public API use interface
-// ii. for simple object use both are fine
-// iii. for complex object use interface
-// iv. when you need to use the same name: use interface
-// v. for union or intersection types use type alias
-// vi. for primitive or function types use type alias
-// vii. flexibility: interface is more flexible than type alias. because you can extend interface but you cannot extend type alias.
-
-// Exercise in user_profile.ts file
 
 // a use case of type alias in mongodb database
 // define type with readonly where u cannot change the type of _id
@@ -186,3 +174,15 @@ const at026: Client = {
 };
 
 console.log("at026", at026);
+
+// when to use type alias and when to use interface?
+
+// i. designing public API use interface
+// ii. for simple object use both are fine
+// iii. for complex object use interface
+// iv. when you need to use the same name: use interface
+// v. for union or intersection types use type alias
+// vi. for primitive or function types use type alias
+// vii. flexibility: interface is more flexible than type alias. because you can extend interface but you cannot extend type alias.
+
+// Exercise in user_profile.ts file

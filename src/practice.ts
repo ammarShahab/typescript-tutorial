@@ -1,3 +1,76 @@
+// Union type
+
+type formResponse =
+  | { success: true; message: string }
+  | { success: false; error: Record<string, string> };
+
+async function formSubmit() {
+  const response: formResponse = await fakeApi();
+  if (response.success) {
+    console.log(response.message);
+  } else {
+    console.log(response.error);
+  }
+}
+
+function fakeApi(): Promise<formResponse> {
+  const random = Math.random() * 10;
+  return Promise.resolve(
+    random > 5
+      ? { success: true, message: "Form submitted successfully" }
+      : { success: false, error: { message: "Invalid email" } }
+  );
+}
+
+formSubmit();
+
+// Intersection type
+type User = {
+  readonly _id: number;
+  name: string;
+  gender: string;
+};
+
+type Admin = {
+  isAdmin: boolean;
+};
+
+type UserAdmin = User & Admin;
+
+const admin1: UserAdmin = {
+  _id: 123,
+  name: "Admin",
+  gender: "male",
+  isAdmin: true,
+};
+
+const user1: UserAdmin = {
+  _id: 123,
+  name: "user",
+  gender: "female",
+  isAdmin: false,
+};
+
+function userInfo(user: UserAdmin) {
+  return user;
+}
+
+const admin = userInfo(admin1);
+console.log(admin);
+const user = userInfo(user1);
+console.log(user);
+
+// Literal type
+type buttons = "Add" | "Delete" | "Edit";
+
+function buttonAction(button: buttons) {
+  console.log(button, "button clicked");
+}
+
+buttonAction("Add");
+buttonAction("Delete");
+buttonAction("Edit");
+
 // in operator type guard
 type Car = {
   drive: () => void;
@@ -15,92 +88,36 @@ function move(vehicle: Car | Boat) {
   }
 }
 
-const tesla: Car = {
-  drive: () => console.log("tesla is driving"),
+const car1: Car = {
+  drive: () => console.log("Car is driving"),
 };
 
-const boat1: Boat = {
-  sail: () => console.log("boat is sailing fast"),
-};
+move(car1);
 
-move(tesla);
-move(boat1);
-
-interface Animal {
-  name: string;
-}
-
-interface Bear extends Animal {
-  eat: string;
-}
-
-interface Dog extends Animal {
-  eat: string;
-}
-
-const bear: Bear = {
-  name: "Wild Bear",
-  eat: "honey",
-};
-
-console.log(bear.name, bear.eat);
-
-function printText(s: string, alignment: "left" | "right" | "center") {
-  // ...
-}
-printText("Hello, world", "left");
-printText("G'day, mate", "center");
-
-class BankAccount {
-  constructor(
-    public name: string,
-    private accountType: string,
-    protected balance: number
-  ) {}
-
-  getAccountHolderName() {
-    console.log(`${this.name}`);
-  }
-
-  getAccountType() {
-    console.log(`${this.name}' account type is ${this.accountType}`);
-  }
-
-  /* protected getAccountBalance() {
-    console.log(`${this.name}'s balance is ${this.balance}`);
-  } */
-}
-
-const rajib = new BankAccount("Rajib", "Elite", 20000);
-rajib.getAccountType();
-/* rajib.accountType;
-rajib.balance; */
-
-class SavingAccount extends BankAccount {
-  getAccountBalance() {
-    console.log(`${this.name}'s balance is ${this.balance}`);
+// instance of operator
+class Dog {
+  woof() {
+    console.log("Woof Woof");
   }
 }
 
-const adnan = new SavingAccount("Adnan", "Savings", 10000);
-console.log(adnan.name);
-console.log(adnan.getAccountType());
-adnan.getAccountBalance();
-
-// Generics
-function logData<T extends userData>(user: T) {
-  console.log(user);
+function makeSound(animal: Dog) {
+  if (animal instanceof Dog) {
+    animal.woof();
+  }
 }
 
-type userData = {
-  name: string;
-  age: number;
-};
+const labrador = new Dog();
+makeSound(labrador);
 
-const sabbir = {
-  name: "Sabbir",
-  age: 38,
-  country: "bd",
-};
-logData(sabbir);
-// logData(true);
+// type narrowing
+function showVal(input: string | number): void {
+  if (typeof input === "string") {
+    console.log(input.toUpperCase());
+  } else {
+    console.log(input * 5);
+  }
+}
+
+showVal(123);
+showVal("Hello");
