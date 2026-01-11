@@ -30,27 +30,30 @@ If you call the function with parameters [3, 0, 2, 4.5, 0, 3, 1] and 2, it shoul
   target: 2,
   average: 1.9285714285714286
 }
+
 */
 interface Exercise {
   periodLength: number;
   trainingDays: number;
-  success: boolean;
+  average: number;
   rating: number;
   ratingDescription: string;
+  success: boolean;
   target: number;
-  average: number;
 }
 
-function calculatePeriodLength(Periodlength: number[]) {
-  return Periodlength.length;
+const hours = [5, 2, 0, 4, 0];
+
+function calculatePeriodLength(PeriodLength: number[]): number {
+  return PeriodLength.length;
 }
 
-console.log("Period Length: ", calculatePeriodLength([5, 2]));
+console.log("Period Length: ", calculatePeriodLength(hours));
 
-function calculateTrainingDays(trainingdays: number[]) {
+function calculateTrainingDays(TrainingDays: number[]): number {
   let newValues: number[] = [];
 
-  trainingdays.map((val) => {
+  TrainingDays.map((val) => {
     if (val > 0) {
       newValues.push(val);
     }
@@ -58,4 +61,11 @@ function calculateTrainingDays(trainingdays: number[]) {
   console.log(newValues);
   return newValues.length;
 }
-console.log("Training Days: ", calculateTrainingDays([5, 2, 0, 4, 0]));
+console.log("Training Days: ", calculateTrainingDays(hours));
+
+function calculateAverage(Average: number[]): number {
+  const result = Average.reduce((total, val) => total + val);
+  return result / Average.length;
+}
+
+console.log("Average: ", calculateAverage(hours));
