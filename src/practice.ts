@@ -24,10 +24,10 @@ If you call the function with parameters [3, 0, 2, 4.5, 0, 3, 1] and 2, it shoul
 { 
   periodLength: 7,
   trainingDays: 5,
+  target: 2,
   rating: 2,
   success: false,
   ratingDescription: 'not too bad but could be better',
-  target: 2,
   average: 1.9285714285714286
 }
 
@@ -42,13 +42,13 @@ interface Exercise {
   target: number;
 }
 
-const hours = [5, 2, 0, 4, 0];
+const hours = [3, 4, 3, 2, 3, 2, 0];
 
 function calculatePeriodLength(PeriodLength: number[]): number {
   return PeriodLength.length;
 }
 
-console.log("Period Length: ", calculatePeriodLength(hours));
+// console.log("Period Length: ", calculatePeriodLength(hours));
 
 function calculateTrainingDays(TrainingDays: number[]): number {
   let newValues: number[] = [];
@@ -61,11 +61,46 @@ function calculateTrainingDays(TrainingDays: number[]): number {
   console.log(newValues);
   return newValues.length;
 }
-console.log("Training Days: ", calculateTrainingDays(hours));
+// console.log("Training Days: ", calculateTrainingDays(hours));
 
 function calculateAverage(Average: number[]): number {
   const result = Average.reduce((total, val) => total + val);
   return result / Average.length;
 }
 
-console.log("Average: ", calculateAverage(hours));
+// console.log("Average: ", calculateAverage(hours));
+
+function displayResult(hours: number[], target: number): Exercise {
+  if (calculateAverage(hours) < 2 && calculateAverage(hours) > 1) {
+    return {
+      periodLength: calculatePeriodLength(hours),
+      trainingDays: calculateTrainingDays(hours),
+      target: target,
+      rating: 2,
+      ratingDescription: "not too bad but could be better",
+      success: false,
+      average: calculateAverage(hours),
+    };
+  } else if (calculateAverage(hours) >= 1 && calculateAverage(hours) < 2) {
+    return {
+      periodLength: calculatePeriodLength(hours),
+      trainingDays: calculateTrainingDays(hours),
+      target: target,
+      rating: 1,
+      ratingDescription: "Do more exercise",
+      success: false,
+      average: calculateAverage(hours),
+    };
+  }
+  return {
+    periodLength: calculatePeriodLength(hours),
+    trainingDays: calculateTrainingDays(hours),
+    target: target,
+    rating: 3,
+    ratingDescription: "Very Good",
+    success: true,
+    average: calculateAverage(hours),
+  };
+}
+
+console.log(displayResult(hours, 2));
