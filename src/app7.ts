@@ -107,7 +107,7 @@ console.log(ehsan); //{ name: 'Ehsan', age: 37, country: 'Bangladesh', id: 42992
 
 // Another example of problem using Generic is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error after compilation, it shows undefined after compilation.
 function logLength<T>(params: T) {
-  console.log("Log Length is: ", params.length);
+  // console.log("Log Length is: ", params.length);
 }
 
 logLength<string>("Hellow Worl"); //showing error
