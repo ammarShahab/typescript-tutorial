@@ -1,3 +1,4 @@
+// BMI calculator
 function calculateBmi(weight: number, height: number): string {
   const result = (weight / Math.pow(height, 2)) * 10000;
   console.log(result);
@@ -14,7 +15,7 @@ function calculateBmi(weight: number, height: number): string {
   return "No Data Found";
 }
 
-console.log(calculateBmi(82, 164));
+console.log(calculateBmi(55, 165));
 
 // Exercise calculator
 
@@ -45,6 +46,11 @@ interface Exercise {
 const hours = [3, 4, 3, 2, 3, 2, 0];
 
 function calculatePeriodLength(PeriodLength: number[]): number {
+  if (PeriodLength.length > 7 || PeriodLength.length < 7) {
+    throw new Error(
+      "Length Error: Length should not be less than or more than 7"
+    );
+  }
   return PeriodLength.length;
 }
 
@@ -103,4 +109,8 @@ function displayResult(hours: number[], target: number): Exercise {
   };
 }
 
-console.log(displayResult(hours, 2));
+try {
+  console.log(displayResult(hours, 2));
+} catch (error) {
+  console.log(error);
+}
