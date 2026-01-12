@@ -113,7 +113,7 @@ export function displayResult(hours: number[], target: number): Exercise {
     trainingDays: calculateTrainingDays(hours),
     target: target,
     rating: 1,
-    ratingDescription: "Bad",
+    ratingDescription: "Very Bad",
     success: false,
     average: calculateAverage(hours),
   };
