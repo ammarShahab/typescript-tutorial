@@ -43,7 +43,7 @@ interface Exercise {
   target: number;
 }
 
-const hours = [3, 4, 3, 2, 3, 2, 0];
+// const hours = [3, 4, 3, 2, 3, 2, 0];
 
 function calculatePeriodLength(PeriodLength: number[]): number {
   if (PeriodLength.length > 7 || PeriodLength.length < 7) {
@@ -76,7 +76,7 @@ function calculateAverage(Average: number[]): number {
 
 // console.log("Average: ", calculateAverage(hours));
 
-function displayResult(hours: number[], target: number): Exercise {
+export function displayResult(hours: number[], target: number): Exercise {
   if (calculateAverage(hours) < 2 && calculateAverage(hours) > 1) {
     return {
       periodLength: calculatePeriodLength(hours),
@@ -110,7 +110,7 @@ function displayResult(hours: number[], target: number): Exercise {
 }
 
 try {
-  console.log(displayResult(hours, 2));
+  // console.log(displayResult(hours, 2));
 } catch (error) {
   console.log(error);
 }
