@@ -33,4 +33,4 @@ app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
 
-// now run the server by "node .\dist\practiceExpress.js" and in thunder CLient go to Body → JSON Content paste "{  "daily_exercises": [3, 0, 2, 4.5, 0, 3,4], "target": 2}" then u will get the result in terminal
+// now run the server by "node .\dist\practiceExpress.js" and in thunder CLient go to Body → JSON → paste "{  "daily_exercises": [3, 0, 2, 4.5, 0, 3,4], "target": 2}" then u will get the result in terminal

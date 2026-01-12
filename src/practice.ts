@@ -77,7 +77,17 @@ function calculateAverage(Average: number[]): number {
 // console.log("Average: ", calculateAverage(hours));
 
 export function displayResult(hours: number[], target: number): Exercise {
-  if (calculateAverage(hours) < 2 && calculateAverage(hours) > 1) {
+  if (calculateAverage(hours) >= 1 && calculateAverage(hours) < 2) {
+    return {
+      periodLength: calculatePeriodLength(hours),
+      trainingDays: calculateTrainingDays(hours),
+      target: target,
+      rating: 1,
+      ratingDescription: "Bad",
+      success: false,
+      average: calculateAverage(hours),
+    };
+  } else if (calculateAverage(hours) >= 2 && calculateAverage(hours) < 3) {
     return {
       periodLength: calculatePeriodLength(hours),
       trainingDays: calculateTrainingDays(hours),
@@ -87,24 +97,24 @@ export function displayResult(hours: number[], target: number): Exercise {
       success: false,
       average: calculateAverage(hours),
     };
-  } else if (calculateAverage(hours) >= 1 && calculateAverage(hours) < 2) {
+  } else if (calculateAverage(hours) > 3)
     return {
       periodLength: calculatePeriodLength(hours),
       trainingDays: calculateTrainingDays(hours),
       target: target,
-      rating: 1,
-      ratingDescription: "Do more exercise",
-      success: false,
+      rating: 3,
+      ratingDescription: "Very Good",
+      success: true,
       average: calculateAverage(hours),
     };
-  }
+
   return {
     periodLength: calculatePeriodLength(hours),
     trainingDays: calculateTrainingDays(hours),
     target: target,
-    rating: 3,
-    ratingDescription: "Very Good",
-    success: true,
+    rating: 1,
+    ratingDescription: "Bad",
+    success: false,
     average: calculateAverage(hours),
   };
 }
