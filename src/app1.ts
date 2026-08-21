@@ -67,6 +67,8 @@ console.log("tuples example", universityStudent);
 //! 3. Special Types
 
 //! 3a. any type (not recommended, but it is used when we don't know the type of variable. but it is not safe to use any type because it can hold any type of value which can lead to runtime errors. it cannot be validated at compile time)
+// Note: When you want to disable type checking of any variable then use "any" type.
+
 let isLoggedIn: any = false; // specify the type of variable
 isLoggedIn = 123; // valid
 isLoggedIn = "yes"; // valid
