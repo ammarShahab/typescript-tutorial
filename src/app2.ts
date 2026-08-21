@@ -56,7 +56,7 @@ function actorInfo(actor: Actor): string {
 console.log(
   actorInfo(actor1),
   "Type of actor info is: ",
-  typeof actorInfo(actor1)
+  typeof actorInfo(actor1),
 );
 console.log(actorInfo(actor2));
 
@@ -111,7 +111,7 @@ type Users = {
   cardDetail?: creditCardDetail;
 };
 
-//at025._id="556565656" //unable to change the readonly data and shows error
+//at025._id = "556565656" //unable to change the readonly data and shows error
 
 // adding creditCardDetails
 
