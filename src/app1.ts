@@ -182,6 +182,7 @@ const employee = {
 };
 
 console.log("Optional chaining: ", employee?.address?.city); //Dhaka
+console.log("Optional chaining: ", employee?.address?.thana); //show error if not found
 
 //! 3h. Arrow function
 const squareNum = (a: number): number => a * a;
