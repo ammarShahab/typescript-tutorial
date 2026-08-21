@@ -80,10 +80,19 @@ const result = JSON.parse('{"name" : "Alice", "age":"30"}');
 console.log(result);
 
 //! 3a. ii. variable without initialization
+// when a variable is declared without initializing any value, it is assigned the value of "undefined" by default and its type is "any"
+
+// example 1
 let something;
+console.log("Type of something: ", typeof something); //undefined
 something = "Adnan";
 something = 90;
 console.log(something);
+
+// example 2
+let name: any = "Arham";
+name = 50;
+console.log("Any Type: ", name);
 
 //! 3b. unknown type (it is safer than "any" type because we have to check the type of variable before using it)
 let data: unknown = "10";
@@ -104,6 +113,7 @@ logMessage("working");
 
 //! 3d. null and undefined types
 let notAssigned: undefined = undefined;
+
 let emptyValue: null = null;
 
 // some exercise-1 in exercise.ts file
