@@ -161,7 +161,29 @@ try {
   console.log(error);
 }
 
-//! 3g. Arrow function
+//! 3g. Nullish Coalescning and optional chaining
+// Nullish Coalescning - If the value is null or undefined it uses the default value
+function CheckUser(user?: string) {
+  console.log("Nullish Coalescning: ", user ?? "Guest");
+}
+
+CheckUser("admin"); //admin
+CheckUser(); //Guest
+
+// Optional chaining - it is used to safely access the nested object
+const employee = {
+  name: "Ammar",
+  id: 5903,
+  address: {
+    house_no: 355,
+    road: "Shewrapara",
+    city: "Dhaka",
+  },
+};
+
+console.log("Optional chaining: ", employee?.address?.city); //Dhaka
+
+//! 3h. Arrow function
 const squareNum = (a: number): number => a * a;
 console.log(squareNum(5));
 
