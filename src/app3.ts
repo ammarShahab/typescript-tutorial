@@ -81,6 +81,11 @@ userInfo(user1);
 */
 
 // ? i. String Literal
+// Examle: Simple assigning a custom type
+let color: "Red" | "Green";
+color = "Green";
+color = "Red";
+// color = "Yellow";//Type '"Yellow"' is not assignable to type '"Red" | "Green"'.
 
 //Example: if i have button with different action then we can use Literal types
 function getButtonAction(action: "Add" | "Remove" | "Edit" | "Submit") {
@@ -93,7 +98,6 @@ getButtonAction("Edit");
 getButtonAction("Submit");
 
 // Example: Also use as Light mode or Dark mode theme in website
-
 type toggleTheme = "Light" | "Dark";
 
 function ThemeToggle(theme: toggleTheme): void {
