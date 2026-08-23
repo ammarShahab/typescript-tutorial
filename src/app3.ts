@@ -33,7 +33,7 @@ function fakeApi(): Promise<FormResponse> {
   return Promise.resolve(
     random
       ? { success: true, message: "Form submitted successfully" }
-      : { success: false, errors: { email: "Invalid email format" } }
+      : { success: false, errors: { email: "Invalid email format" } },
   );
 }
 
@@ -70,6 +70,18 @@ userInfo(user1);
 //! 7. Literal types
 // definition: it is used to specify the exact value a string or number must have. it is used when we want to restrict a variable to a specific set of values.
 
+// ? There are four types of Literal types
+/**
+ * String Literal
+ * Numeric Literal
+ * Boolean Literal
+ * Object Literal
+ * Template Literal
+
+*/
+
+// ? i. String Literal
+
 //Example: if i have button with different action then we can use Literal types
 type Action = "Add" | "Remove" | "Edit" | "Submit";
 
@@ -83,6 +95,84 @@ getButtonAction("Edit");
 getButtonAction("Submit");
 
 // Note: Also use as Light mode or Dark mode theme in website
+
+// ? ii. Numeric Literal
+
+type diceNumber = 1 | 2 | 3 | 4 | 5 | 6;
+
+function rollDice(): diceNumber {
+  return (Math.floor(Math.random() * 6) + 1) as diceNumber;
+}
+
+const result = rollDice();
+
+console.log(`Dice rolled to number ${result}`);
+
+// ? iii. Boolean Literal
+type successFlag = "success" | true | 1;
+type failureFlag = "fail" | false | 0;
+
+function processStatus(status: successFlag | failureFlag) {
+  if (status === "success" || status === true || status === 1) {
+    console.log("Status saved Successfully");
+  } else {
+    console.log("Status not saved Successfully");
+  }
+}
+
+processStatus(0);
+processStatus(true);
+processStatus("fail");
+processStatus(false);
+
+// ? iv. Object Literal
+type HTTPSuccess = {
+  status: 200 | 201 | 203;
+  statusText: "Success" | "Authenticated" | "No Content";
+  data: any;
+};
+
+type HTTPError = {
+  status: 400 | 401 | 403 | 404 | 500;
+  statusText: "Failed" | "Un-Authorized" | "Internal Server Error";
+  error: string;
+};
+
+function handleResponse(response: HTTPSuccess | HTTPError) {
+  if (response.status >= 200 && response.status <= 300) {
+    console.log(response.statusText);
+    if ("data" in response) {
+      console.log(response.data);
+    } else {
+      console.log(response.error);
+    }
+  } else if (response.status >= 400 && response.status <= 500) {
+    console.log(response.statusText);
+    if ("data" in response) {
+      console.log(response.data);
+    } else {
+      console.log(response.error);
+    }
+  }
+}
+
+const HTTPSuccessRequest: HTTPSuccess = {
+  status: 203,
+  statusText: "Authenticated",
+  data: {
+    name: "John Doe",
+    email: "johndoe@example.com",
+  },
+};
+
+const HTTPErrorRequest: HTTPError = {
+  status: 404,
+  statusText: "Internal Server Error",
+  error: "Server Error",
+};
+
+handleResponse(HTTPSuccessRequest);
+handleResponse(HTTPErrorRequest);
 
 //! 8. Type Narrowing
 // definition: it is the process of refining a variable's type to a more specific type. It is used when we want to perform different operations based on the type of a variable. i.e কোন একটা নির্দিষ্ট type কে নির্দিষ্ট operation করানো।
