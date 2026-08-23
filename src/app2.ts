@@ -69,9 +69,19 @@ function studInfo(user: { name: string; age: number }) {
 console.log(studInfo(student));
 
 //! 7b. Type alias
-// type alias is used to define the structure of an object. It is also used to define the type of a variable that holds an object. you cannot reassign type alias.
+// type alias is used to define primitive like string and also complex type object and array.
 // example:
 
+//? Primitive
+type CarName = string;
+type CarModel = string;
+type CarYear = number;
+
+const carName: CarName = "Toyota";
+const carModel: CarModel = "Axio";
+const carYear: CarYear = 2017;
+
+// ? Object
 type Actor = {
   name: string;
   age: number;
@@ -116,8 +126,37 @@ console.log(
 );
 console.log(actorInfo(actor2));
 
+// ? type alias can perform Union and Intersection
+
+// Union
+type Employee = {
+  id: number;
+  name: string;
+};
+
+type Gender = Employee & {
+  gender: string;
+};
+
+const employee_1: Gender = {
+  id: 6029,
+  name: "Walid",
+  gender: "male",
+};
+
+console.log("Type alias perform unions: ", employee_1);
+
+// Intersection
+type response = "success" | "failed";
+
+function ApiResponse(getresponse: response) {
+  console.log("Type alias perform Intersection: ", getresponse);
+}
+
+ApiResponse("failed");
+
 //! 8. type interface
-// Interface is similar to type alias. But interface can be extended. It is used to define the structure of an object. It is also used to define the type of a variable that holds an object.
+// Interface is similar to type alias. type alias and interface both can be extended but interface supports declaration merging. It is only used to define the structure of an object. It is also used to define the type of a variable that holds an object.
 interface Car {
   name: string;
   model: string;
