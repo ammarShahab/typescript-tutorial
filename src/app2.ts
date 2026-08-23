@@ -16,7 +16,6 @@ const c: number[] = [...a, ...b];
 console.log("spread operator in array: ", c); //[ 1, 4, 8, 2, 6, 12 ]
 
 //? Object
-
 type objType = {
   name: string;
   age: number;
@@ -36,6 +35,24 @@ const modifiedUser: objType = {
   age: 40,
 };
 console.log("spread operator in modified object: ", modifiedUser); //{ name: 'Akram', age: 40 }
+
+// ! 6. Destructuring
+//? Object
+
+type Product = {
+  name: string;
+  price: number;
+};
+
+const sauce = {
+  name: "Ruchi Jhal Tomato Sauce",
+  price: 310,
+};
+
+const { name, price }: Product = sauce;
+// or
+// const { name, price }: { name: string; price: number } = sauce;
+console.log("Destructuring object: ", name, price);
 
 //! 6. Object type and type alias
 //! 6a. Object structure typing
