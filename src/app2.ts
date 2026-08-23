@@ -1,3 +1,12 @@
+//! 4. Rest operator
+function add(a: number, b: number, ...rest: number[]) {
+  return a + b + rest.reduce((p, c) => p + c, 0);
+}
+
+const total = add(10, 10, 10, 10, 10, 10, 10);
+
+console.log("Rest Operator example: ", total);
+
 //! 4. Object type and type alias
 //! 4a. Object structure typing
 
