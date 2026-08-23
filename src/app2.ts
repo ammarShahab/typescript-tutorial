@@ -128,7 +128,7 @@ console.log(actorInfo(actor2));
 
 // ? type alias can perform Union and Intersection
 
-// Union
+// Intersection
 type Employee = {
   id: number;
   name: string;
@@ -146,7 +146,7 @@ const employee_1: Gender = {
 
 console.log("Type alias perform unions: ", employee_1);
 
-// Intersection
+// Union
 type response = "success" | "failed";
 
 function ApiResponse(getresponse: response) {
