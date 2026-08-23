@@ -54,8 +54,8 @@ const { name, price }: Product = sauce;
 // const { name, price }: { name: string; price: number } = sauce;
 console.log("Destructuring object: ", name, price);
 
-//! 6. Object type and type alias
-//! 6a. Object structure typing
+//! 7. Object type and type alias
+//! 7a. Object structure typing
 
 const student = {
   name: "Adnan Sami",
@@ -68,7 +68,7 @@ function studInfo(user: { name: string; age: number }) {
 
 console.log(studInfo(student));
 
-//! 6b. Type alias
+//! 7b. Type alias
 // type alias is used to define the structure of an object. It is also used to define the type of a variable that holds an object. you cannot reassign type alias.
 // example:
 
@@ -116,7 +116,7 @@ console.log(
 );
 console.log(actorInfo(actor2));
 
-//! 7. type interface
+//! 8. type interface
 // Interface is similar to type alias. But interface can be extended. It is used to define the structure of an object. It is also used to define the type of a variable that holds an object.
 interface Car {
   name: string;
