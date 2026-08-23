@@ -1,4 +1,4 @@
-//! 9. Literal types
+//! 8. Literal types
 // definition: it is used to specify the exact value a string or number must have. it is used when we want to restrict a variable to a specific set of values.
 
 // ? There are four types of Literal types
@@ -128,7 +128,7 @@ function makeMove(place: DirectionAndDistance): void {
 
 makeMove("south - 5km");
 
-//! 10. Type Narrowing
+//! 9. Type Narrowing
 // definition: it is the process of refining a variable's type to a more specific type. It is used when we want to perform different operations based on the type of a variable. i.e কোন একটা নির্দিষ্ট type কে নির্দিষ্ট operation করানো।
 
 function processInput(input: string | number) {
@@ -142,7 +142,7 @@ function processInput(input: string | number) {
 processInput(" Hello ");
 processInput(10);
 
-//! 10.a typeof operator type guard
+//! 9.a typeof operator type guard
 // definition: it is used to check the type of a variable at runtime. it is used to ensure that the code is type-safe and to avoid runtime errors. i.e same as type narrowing.
 
 function formatValue(value: string | number) {
@@ -155,7 +155,7 @@ function formatValue(value: string | number) {
 console.log(formatValue("hello"));
 console.log(formatValue(3.14159));
 
-//! 10.b. in operator type guard
+//! 9.b. in operator type guard
 // definition: it is used to check if a property exists in an object i.e "in" is used যখন object এর property এর মধ্যে checking করবো।
 
 type Car = {
@@ -191,7 +191,7 @@ const boat: Boat = {
 move(car1);
 move(boat);
 
-//! 11.c. instanceof type guard
+//! 9.c. instanceof type guard
 // definition: the instanceof operator is used to check if an object is an instance of(উদাহরণ) specific class or any class in its prototype chain or a constructor function
 
 class Cat {
@@ -219,7 +219,7 @@ const dog = new Dog();
 makeSound(cat);
 makeSound(dog);
 
-//! 10.d. creating a custom type guard
+//! 9.d. creating a custom type guard
 // definition: it is used to check if a variable is of a specific type. it is used to ensure that the code is type-safe and to avoid runtime errors.
 
 // What is custom type guard?
