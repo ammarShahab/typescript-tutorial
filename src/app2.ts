@@ -198,7 +198,7 @@ const at025: Users = {
   cardDetail: cardDetail,
 };
 
-console.log("at025", at025);
+console.log("Type alias use case at025: ", at025);
 
 // the upper method is not the best way to add credit card details but you should know the process.
 
@@ -212,13 +212,13 @@ interface Client {
 }
 
 // you can also reassign interface
-interface Client {
+interface CardDetails extends Client {
   cardNumber: number;
   expiryDate: string;
   cvv: number;
 }
 
-const at026: Client = {
+const at026: CardDetails = {
   _id: "54456666622222",
   name: "Adnan",
   age: 37,
@@ -229,7 +229,7 @@ const at026: Client = {
   cvv: 920,
 };
 
-console.log("at026", at026);
+console.log("Interface using best way at026: ", at026);
 
 // when to use type alias and when to use interface?
 
