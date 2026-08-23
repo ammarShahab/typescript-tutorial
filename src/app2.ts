@@ -7,6 +7,36 @@ const total = add(10, 10, 10, 10, 10, 10, 10);
 
 console.log("Rest Operator example: ", total);
 
+// ! 5. Spread Operator
+// ? Array
+const a: number[] = [1, 4, 8];
+const b: number[] = [2, 6, 12];
+
+const c: number[] = [...a, ...b];
+console.log("spread operator in array: ", c); //[ 1, 4, 8, 2, 6, 12 ]
+
+//? Object
+
+type objType = {
+  name: string;
+  age: number;
+};
+const user1: objType = {
+  name: "Akram",
+  age: 48,
+};
+
+const newUser: objType = { ...user1 };
+
+console.log("spread operator in object: ", newUser); //{ name: 'Akram', age: 48 }
+
+//? Modifying an object
+const modifiedUser: objType = {
+  ...newUser,
+  age: 40,
+};
+console.log("spread operator in modified object: ", modifiedUser); //{ name: 'Akram', age: 40 }
+
 //! 5. Object type and type alias
 //! 5a. Object structure typing
 
