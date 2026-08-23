@@ -155,8 +155,9 @@ function ApiResponse(getresponse: response) {
 
 ApiResponse("failed");
 
-//! 8. type interface
-// Interface is similar to type alias. type alias and interface both can be extended but interface supports declaration merging. It is only used to define the structure of an object. It is also used to define the type of a variable that holds an object.
+//! 7c. type interface
+// Interface is similar to type alias. Type alias and interface both can be extended but interface supports declaration merging. It is only used to define the structure of an object. It is also used to define the type of a variable that holds an object.
+
 interface Car {
   name: string;
   model: string;
@@ -164,7 +165,7 @@ interface Car {
   isAvailable: boolean;
 }
 
-// Reassigning the interface
+// Reassigning the interface (declaration merging)
 
 interface Car {
   year?: number; // you can reassign interface
