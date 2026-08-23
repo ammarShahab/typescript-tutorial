@@ -83,9 +83,7 @@ userInfo(user1);
 // ? i. String Literal
 
 //Example: if i have button with different action then we can use Literal types
-type Action = "Add" | "Remove" | "Edit" | "Submit";
-
-function getButtonAction(action: Action) {
+function getButtonAction(action: "Add" | "Remove" | "Edit" | "Submit") {
   console.log(action, "Button");
 }
 
@@ -94,13 +92,21 @@ getButtonAction("Remove");
 getButtonAction("Edit");
 getButtonAction("Submit");
 
-// Note: Also use as Light mode or Dark mode theme in website
+// Example: Also use as Light mode or Dark mode theme in website
+
+type toggleTheme = "Light" | "Dark";
+
+function ThemeToggle(theme: toggleTheme): void {
+  console.log(`My current theme is ${theme}.`);
+}
+
+ThemeToggle("Light");
 
 // ? ii. Numeric Literal
 
 type diceNumber = 1 | 2 | 3 | 4 | 5 | 6;
 
-function rollDice(): diceNumber {
+function rollDice() {
   return (Math.floor(Math.random() * 6) + 1) as diceNumber;
 }
 
@@ -173,6 +179,19 @@ const HTTPErrorRequest: HTTPError = {
 
 handleResponse(HTTPSuccessRequest);
 handleResponse(HTTPErrorRequest);
+
+// ? v. Template Literal
+
+type direction = "east" | "west" | "north" | "south";
+type distance = "1km" | "5km" | "7km";
+
+type DirectionAndDistance = `${direction} - ${distance}`;
+
+function makeMove(place: DirectionAndDistance): void {
+  console.log(`Go to ${place} direction.`);
+}
+
+makeMove("south - 5km");
 
 //! 8. Type Narrowing
 // definition: it is the process of refining a variable's type to a more specific type. It is used when we want to perform different operations based on the type of a variable. i.e কোন একটা নির্দিষ্ট type কে নির্দিষ্ট operation করানো।
