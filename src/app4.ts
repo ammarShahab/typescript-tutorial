@@ -1,8 +1,8 @@
-//! 9. typescript OOP
+//! 10. typescript OOP
 
 // Basic concept of OOP
 
-//! 9a. Constructor
+//! 10a. Constructor
 class Person {
   name: string;
   age: number;
@@ -22,7 +22,7 @@ const person1 = new Person("Adil", 26); //When a class is called with the new ke
 person1.greet();
 console.log(person1.name); //to access the property of the object
 
-//! 9b. Modifier (public, private, protected)
+//! 10b. Modifier (public, private, protected)
 // In class there are 3 types of modifiers
 /* *
  *i. public: accessible from anywhere
@@ -72,7 +72,7 @@ class SavingAccount extends BankAccount {
 const user2 = new SavingAccount("Afnan", 1000);
 user2.showAccountType();
 
-//! 9c. Private vs Protected Modifier Example
+//! 10c. Private vs Protected Modifier Example
 // Private: NOT accessible in subclasses (only within the class itself)
 // Protected: Accessible in subclasses
 
@@ -123,7 +123,7 @@ const hasan = new Employee("Hasan", 35, "59004");
 console.log("type modifiers best practices", hasan);
 hasan.showId(); //access the private property from the class
 
-//! 9d. Inheritance
+//! 10d. Inheritance
 // Inheritance is a mechanism in which a new class is created from an existing class. The new class is called a subclass and the existing class is called a superclass.
 
 class Animal {
