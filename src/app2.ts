@@ -128,7 +128,11 @@ console.log(actorInfo(actor2));
 
 // ? type alias can perform Union and Intersection
 
-// Intersection
+//  Intersection (&)
+
+// definition: it is used to combine multiple types into one. it is used when we want to combine multiple types into a single type. it is used when we want to create a new type that has all the properties of the existing types.
+
+// Example:
 type Employee = {
   id: number;
   name: string;
@@ -146,7 +150,36 @@ const employee_1: Gender = {
 
 console.log("Type alias perform unions: ", employee_1);
 
-// Union
+// Example:
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+type Admin = {
+  isAdmin: boolean;
+};
+
+type AdminUser = User & Admin;
+
+const user_1: AdminUser = {
+  id: 1,
+  name: "Sumonto",
+  email: "sumonto@gmail.com",
+  isAdmin: true,
+};
+
+function userInfo(object: AdminUser) {
+  console.log("Our IT department admin is: ", object);
+}
+
+userInfo(user_1);
+
+// Union (|)
+// definition: it is used to define a variable that can hold multiple types. it is used when we want to allow a variable to hold more than one type of value
+
+// Example:
 type response = "success" | "failed";
 
 function ApiResponse(getresponse: response) {
@@ -154,6 +187,34 @@ function ApiResponse(getresponse: response) {
 }
 
 ApiResponse("failed");
+
+//Note: use case of union type is in dynamic form input field. where user can input string or number and also in API response where the response can be of different types i.e dynamic api response type.
+
+// Example:
+// use case example of form response with api calls
+type FormResponse =
+  | { success: true; message: string }
+  | { success: false; errors: Record<string, string> }; //means object key and value pair
+
+async function formSubmit() {
+  const response: FormResponse = await fakeApi();
+  if (response.success) {
+    console.log(response.message);
+  } else {
+    console.log(response.errors);
+  }
+}
+
+function fakeApi(): Promise<FormResponse> {
+  const random = Math.random() > 0.5;
+  return Promise.resolve(
+    random
+      ? { success: true, message: "Form submitted successfully" }
+      : { success: false, errors: { email: "Invalid email format" } },
+  );
+}
+
+formSubmit();
 
 //! 7c. type interface
 // Interface is similar to type alias. Type alias and interface both can be extended but interface supports declaration merging. It is only used to define the structure of an object. It is also used to define the type of a variable that holds an object.

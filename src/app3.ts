@@ -1,72 +1,3 @@
-//! 8. Advance types (Union and intersection types)
-
-//! 8a. Union types (| = works as or i.e একটা value এর ক্ষেত্রে দুইটা type use করা যায়)
-// definition: it is used to define a variable that can hold multiple types. it is used when we want to allow a variable to hold more than one type of value.
-
-type ProductId = string | number;
-
-function getProductId(id: ProductId) {
-  console.log("Fetching product id: ", id);
-}
-
-getProductId("abc123");
-getProductId(123456);
-
-//Note: use case of union type is in dynamic form input field. where user can input string or number and also in API response where the response can be of different types i.e dynamic api response type.
-
-// use case example of form response with api calls
-type FormResponse =
-  | { success: true; message: string }
-  | { success: false; errors: Record<string, string> }; //means object key and value pair
-
-async function formSubmit() {
-  const response: FormResponse = await fakeApi();
-  if (response.success) {
-    console.log(response.message);
-  } else {
-    console.log(response.errors);
-  }
-}
-
-function fakeApi(): Promise<FormResponse> {
-  const random = Math.random() > 0.5;
-  return Promise.resolve(
-    random
-      ? { success: true, message: "Form submitted successfully" }
-      : { success: false, errors: { email: "Invalid email format" } },
-  );
-}
-
-formSubmit();
-
-//! 8b. Intersection type (&)
-// definition: it is used to combine multiple types into one. it is used when we want to combine multiple types into a single type. it is used when we want to create a new type that has all the properties of the existing types.
-
-type User = {
-  id: number;
-  name: string;
-  email: string;
-};
-
-type Admin = {
-  isAdmin: boolean;
-};
-
-type AdminUser = User & Admin;
-
-const user1: AdminUser = {
-  id: 1,
-  name: "Sumonto",
-  email: "sumonto@gmail.com",
-  isAdmin: true,
-};
-
-function userInfo(object: AdminUser) {
-  console.log("Our IT department admin is: ", object);
-}
-
-userInfo(user1);
-
 //! 9. Literal types
 // definition: it is used to specify the exact value a string or number must have. it is used when we want to restrict a variable to a specific set of values.
 
@@ -260,7 +191,7 @@ const boat: Boat = {
 move(car1);
 move(boat);
 
-//! 10.c. instanceof type guard
+//! 11.c. instanceof type guard
 // definition: the instanceof operator is used to check if an object is an instance of(উদাহরণ) specific class or any class in its prototype chain or a constructor function
 
 class Cat {
