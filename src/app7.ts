@@ -62,7 +62,7 @@ const booleanResponse: APIResponse<boolean> = {
   data: true,
 };
 
-// Some other way to use generics
+//? Some other way to use generics
 const addId = function <T>(obj: T) {
   // here <T> is generics i.e it can be any type and set the T type to obj
   const id = Math.floor(Math.random() * 100);
