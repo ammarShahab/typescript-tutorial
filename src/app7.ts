@@ -62,7 +62,19 @@ const booleanResponse: APIResponse<boolean> = {
   data: true,
 };
 
-//? Some other way to use generics
+// ? Generic interface as a function types (Ordinary function will not work Use only arrow function or function declaration)
+
+interface function_interface<T, U> {
+  (input: T): U;
+}
+
+const stringToNumber: function_interface<string, number> = (input) => {
+  return input.length;
+};
+
+console.log("Function Interface: ", stringToNumber("Hello! World"));
+
+//? Use case of type in Generics
 const addId = function <T>(obj: T) {
   // here <T> is generics i.e it can be any type and set the T type to obj
   const id = Math.floor(Math.random() * 100);
@@ -82,15 +94,15 @@ const user1: userType = {
 const sabbir = addId<userType>(user1);
 console.log(sabbir); //{ name: 'Sabbir', age: 37, id: 18 }
 
-// But the problem is if we pass any other type of data without setting the generics in a function call like <userType>, it will not throw an error. It will just ignore the type and add the id property to the object.
+// But the problem is if we pass any other type of data without setting the generics during function call <userType>, it will not throw an error. It will just ignore the type and add the id property to the object.
 console.log("add Id", addId(true)); // { id: 92 } //What happens here, You passed a boolean value (true). So, TypeScript infers T = boolean. Now, the return line is: return { ...obj, id }; But here’s the catch obj is not an object (it’s a primitive boolean). The spread operator (...obj) only works correctly with objects and arrays — not with primitives like boolean, string, or number. So internally: { ...true, id } becomes just { id: 42 }, because there’s nothing to spread from a boolean.
 
-// but we can solve that by following
 // console.log("add id using userType: ", addId<userType>(true));//Argument of type 'boolean' is not assignable to parameter of type 'userType'.
 
 //! 14. Constraints (সিমাবদ্ধতা) (give the rule using extends)
-// To solve the upper problem there is another method called Constraints. See the following example
-// We use extends with the datatype in the <T> which works as variable
+// To solve the upper problem to take full control of the type safety there is another method called Constraints. See the following example
+
+// We use extends with the datatype in the <T> to get the full control of type safety
 const addId2 = function <T extends userType>(obj: T) {
   const id = Math.floor(Math.random() * 1000000);
   return { ...obj, id };
