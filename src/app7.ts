@@ -88,7 +88,7 @@ console.log("add Id", addId(true)); // { id: 92 } //What happens here, You passe
 // but we can solve that by following
 // console.log("add id using userType: ", addId<userType>(true));//Argument of type 'boolean' is not assignable to parameter of type 'userType'.
 
-//! 14. Constraints (give the rule using extends)
+//! 14. Constraints (সিমাবদ্ধতা) (give the rule using extends)
 // To solve the upper problem there is another method called Constraints. See the following example
 // We use extends with the datatype in the <T> which works as variable
 const addId2 = function <T extends userType>(obj: T) {
@@ -126,3 +126,18 @@ logLength2<string>("Hellow World Hellow"); //19
 logLength2<string[]>(["b", "c", "d"]);
 
 // Constraints exercise in apiResponse.ts file
+
+// ! 14.a. Using type parameter in Generic Constraints
+// TypeScript allows you to define type parameter, which is a constraints of the another parameter of the same function.
+
+function getValue<T extends object, U extends keyof T>(obj: T, key: U) {
+  return obj[key];
+}
+
+const user3 = {
+  name: "Fahim Kadir",
+  age: 35,
+};
+
+const result = getValue(user3, "name");
+console.log("Using type parameter in generics constraints: ", result);
