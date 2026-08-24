@@ -33,7 +33,7 @@ logInput<string>("Generic");
 logInput<boolean>(false);
 logInput<number>(567);
 
-// Use case of Generics in interface
+//? Use case of Generics in interface
 // If u don't know the what type of data is coming in that case Generic is also used
 
 interface APIResponse<T> {
