@@ -68,6 +68,7 @@ interface function_interface<T, U> {
   (input: T): U;
 }
 
+// Note: as the function_interface is the structure of a function so it will placed with variable stringToNumber function declaration.
 const stringToNumber: function_interface<string, number> = (input) => {
   return input.length;
 };
