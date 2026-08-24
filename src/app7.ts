@@ -79,7 +79,7 @@ const user1: userType = {
   age: 37,
 };
 
-const sabbir = addId(user1);
+const sabbir = addId<userType>(user1);
 console.log(sabbir); //{ name: 'Sabbir', age: 37, id: 18 }
 
 // But the problem is if we pass any other type of data, it will not throw an error. It will just ignore the type and add the id property to the object.
