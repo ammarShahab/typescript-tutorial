@@ -28,7 +28,7 @@ function logInput<T>(input: T) {
   console.log(input);
 }
 
-// call the function
+// call the function with types
 logInput<string>("Generic");
 logInput<boolean>(false);
 logInput<number>(567);
@@ -100,9 +100,9 @@ console.log("add Id", addId(true)); // { id: 92 } //What happens here, You passe
 // console.log("add id using userType: ", addId<userType>(true));//Argument of type 'boolean' is not assignable to parameter of type 'userType'.
 
 //! 14. Constraints (সিমাবদ্ধতা) (give the rule using extends)
-// To solve the upper problem to take full control of the type safety there is another method called Constraints. See the following example
+// To solve the upper problem to take full control of the type safety from function level there is another method called Constraints. See the following example
 
-// We use extends with the datatype in the <T> to get the full control of type safety
+// We use extends with the datatype in the <T> from the function level to get the full control of type safety. So the type safety is controlled in the function level. If you send the different data type during function call will show error.
 const addId2 = function <T extends userType>(obj: T) {
   const id = Math.floor(Math.random() * 1000000);
   return { ...obj, id };
@@ -111,13 +111,13 @@ const addId2 = function <T extends userType>(obj: T) {
 const user2 = {
   name: "Ehsan",
   age: 37,
-  country: "Bangladesh", //as the data type accepts name and age which should not avoided we can also add country in user2 which will not show any error.
+  country: "Bangladesh", //as the data type accepts name and age which should not avoided we can also add country in user2 which will not show any error because the extends method. Here, Type T must contain at least name: string and age: number. Having additional properties is completely allowed.
 };
 
 const ehsan = addId2(user2);
 console.log(ehsan); //{ name: 'Ehsan', age: 37, country: 'Bangladesh', id: 429923 }
 
-// Now if u pass different data type it will show error. So using constraints will solve the problem
+// Now if u pass different data type it will show error. So using constraints give the proper type safety from the function level.
 // console.log(addId2(true)); //show error
 
 // Another example of problem using Generic is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error after compilation, it shows undefined after compilation.
