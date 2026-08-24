@@ -85,6 +85,9 @@ console.log(sabbir); //{ name: 'Sabbir', age: 37, id: 18 }
 // But the problem is if we pass any other type of data, it will not throw an error. It will just ignore the type and add the id property to the object.
 console.log("add Id", addId(true)); // { id: 92 } //What happens here, You passed a boolean value (true). So, TypeScript infers T = boolean. Now, the return line is: return { ...obj, id }; But here’s the catch obj is not an object (it’s a primitive boolean). The spread operator (...obj) only works correctly with objects and arrays — not with primitives like boolean, string, or number. So internally: { ...true, id } becomes just { id: 42 }, because there’s nothing to spread from a boolean.
 
+// but we can solve that by following
+// console.log("add id using userType: ", addId<userType>(true));//Argument of type 'boolean' is not assignable to parameter of type 'userType'.
+
 //! 14. Constraints (give the rule using extends)
 // To solve the upper problem see the following example
 // We use extends with the datatype in the <T> which works as variable
