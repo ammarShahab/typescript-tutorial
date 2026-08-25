@@ -110,6 +110,7 @@ console.log("Exercise of post2: ", post2.status);
 
 // ! 16. As const instead of enum
 
+// Defining a object
 const LOG_LEVEL = {
   INFO: "info",
   ERROR: "error",
