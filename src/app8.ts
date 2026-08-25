@@ -108,7 +108,14 @@ const post2: Post = {
 
 console.log("Exercise of post2: ", post2.status);
 
-// ! 16. As const instead of enum
+// ! 16. as const instead of enum
+
+// ? Why we use "as const" instead of enum
+/* 
+i. Zero runtime overhead
+ii. align with plain Javascript
+iii. gives the same type safety as enums
+*/
 
 // Defining a object
 const LOG_LEVEL = {
