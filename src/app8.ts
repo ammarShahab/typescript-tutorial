@@ -113,6 +113,8 @@ console.log("Exercise of post2: ", post2.status);
 const LOG_LEVEL = {
   INFO: "info",
   ERROR: "error",
+  DEBUG: "debug",
+  WARN: "warning",
 } as const;
 
 // Converts the LOG_LEVEL to Union "Info" |"Error"
@@ -123,4 +125,4 @@ function messageLog(message: string, level: LogLevel) {
 }
 
 messageLog("Information Log: ", LOG_LEVEL.INFO);
-messageLog("Error Log: ", "Error");
+messageLog("Error Log: ", "error");
