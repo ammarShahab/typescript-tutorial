@@ -125,5 +125,7 @@ function messageLog(message: string, level: LogLevel) {
   console.log(`${message} : ${level}`);
 }
 
-messageLog("Information Log: ", LOG_LEVEL.INFO);
-messageLog("Error Log: ", "error");
+messageLog("Information Log: ", LOG_LEVEL.INFO); //Information Log:  : info
+messageLog("Error Log: ", "error"); // Error Log:  : error
+messageLog("Debugging Log: ", LOG_LEVEL.DEBUG); // Debugging Log:  : debug
+messageLog("Warning Log: ", "warning"); //Warning Log:  : warning
