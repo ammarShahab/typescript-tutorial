@@ -113,7 +113,7 @@ console.log("Exercise of post2: ", post2.status);
 const LOG_LEVEL = {
   INFO: "info",
   ERROR: "error",
-};
+} as const;
 
 // Converts the LOG_LEVEL to Union "Info" |"Error"
 type LogLevel = (typeof LOG_LEVEL)[keyof typeof LOG_LEVEL];
