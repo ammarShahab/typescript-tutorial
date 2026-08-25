@@ -107,3 +107,20 @@ const post2: Post = {
 };
 
 console.log("Exercise of post2: ", post2.status);
+
+// ! 16. As const instead of enum
+
+const LOG_LEVEL = {
+  INFO: "info",
+  ERROR: "error",
+};
+
+// Converts the LOG_LEVEL to Union "Info" |"Error"
+type LogLevel = (typeof LOG_LEVEL)[keyof typeof LOG_LEVEL];
+
+function messageLog(message: string, level: LogLevel) {
+  console.log(`${message} : ${level}`);
+}
+
+messageLog("Information Log: ", LOG_LEVEL.INFO);
+messageLog("Error Log: ", "Error");
