@@ -13,7 +13,7 @@ class Person {
 
   greet() {
     console.log(
-      `Hello ${this.name}, I think your age is ${this.age} years old.`
+      `Hello ${this.name}, I think your age is ${this.age} years old.`,
     );
   }
 }
@@ -45,7 +45,7 @@ class BankAccount {
 
   showBalance() {
     console.log(
-      `${this.accountHolderName} account balance is ${this.balance}tk. His account type is ${this.accountType}.`
+      `${this.accountHolderName} account balance is ${this.balance}tk. His account type is ${this.accountType}.`,
     );
   }
 }
@@ -62,7 +62,7 @@ user1.showBalance(); //can access public property from outside the class
 class SavingAccount extends BankAccount {
   showAccountType() {
     console.log(
-      `${this.accountHolderName}'s account type is ${this.accountType}.`
+      `${this.accountHolderName}'s account type is ${this.accountType}.`,
       // but if u want to access the balance property from outside the class according to following example, it will show error because balance is a private property which cannot be accessed from subclasses, only accessible within the class.
       // `${this.accountHolderName}'s account type is ${this.accountType}. Balance is ${this.balance}tk.`
     );
@@ -113,7 +113,11 @@ myCar.showCarDetails(); // ✓ Can call public method
 
 // But the best industry standard practice is using type modifiers
 class Employee {
-  constructor(public name: string, public age: number, private _id: string) {}
+  constructor(
+    public name: string,
+    public age: number,
+    private _id: string,
+  ) {}
   showId() {
     console.log("Hasan ID is: ", this._id);
   }
@@ -149,12 +153,12 @@ class Creature {
   constructor(
     public name: string,
     protected price: number,
-    private type?: string //this optional sign should be at the end nor it will show error
+    private type?: string, //this optional sign should be at the end nor it will show error
   ) {}
 
   showCreatureInfo() {
     console.log(
-      `${this.name} is a ${this.type} breed. It's price is ${this.price}$.`
+      `${this.name} is a ${this.type} breed. It's price is ${this.price}$.`,
     );
   }
 }
@@ -166,12 +170,16 @@ tommy.showCreatureInfo();
 // console.log(tommy.price);
 
 class Cat extends Creature {
-  constructor(name: string, price: number, private category: string) {
+  constructor(
+    name: string,
+    price: number,
+    private category: string,
+  ) {
     super(name, price);
   }
   showCatInfo() {
     console.log(
-      `${this.name} is a ${this.category} which costs ${this.price}$`
+      `${this.name} is a ${this.category} which costs ${this.price}$`,
     );
   }
 }
