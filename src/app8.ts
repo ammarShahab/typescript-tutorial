@@ -1,138 +1,68 @@
-//! 15. Enum Type
+// ! 15. Condiotional Type
 
-// What is Enum Type?
-// Enum is a type that represents a set of named constants. It is used to define a group of related values that have a fixed set of possible values. It is also used to define a set of related constants that can be used to represent a specific set of values. You can use both only enums and const enums.
+// In TypeScript, conditional type is used to assign a type of the variable based on the condition.
 
-// Types of enums and the use case
+// ? Syntax (commented due to showing error)
+// type a = Type extends anotherType ? TrueType : FalseType;
 
-// i. Numeric enums (it will by default returns numeric value)
-// used for Position or Direction
-enum Keys {
-  Up,
-  Down,
-  Left,
-  Right,
-}
-
-console.log(Keys.Up); //0
-console.log(Keys.Right); //3
-
-// Another use case is for Role
-
-enum Role {
-  Guest,
-  User,
-  Admin,
-}
-
-const role = Role.Admin;
-console.log("role", role);
-
-// ii. String Enum (enums এ string value set করে দেয়া হয়।)
-// used for HTTP or API call status
-
-const enum Status {
-  Active = "Active",
-  Pending = "Pending",
-  Reject = "Reject",
-}
-
-console.log(Status.Active); //Active
-console.log(Status.Reject); //Reject
-
-// iii. Heterogeneous Enum (যখন Enum-এ নিউমেরিক এবং স্ট্রিং উভয় ধরনের মান একসাথে থাকে, তখন তাকে বলা হয় Heterogeneous Enum)
-
-enum Responses {
-  Success = 1,
-  Failure = "Failed",
-}
-
-console.log(Responses.Success); //1
-console.log(Responses.Failure); //Failed
-
-// use case for toggle states or mode
-enum Mode {
-  Dark,
-  Light,
-}
-console.log("Mode", Mode.Light);
-
-//Exercise: create a function to find weekend
-
-enum Weekdays {
-  Saturday,
-  Sunday,
-  Monday,
-  Tuesday,
-  Wednesday,
-  Thursday,
-  Friday,
-}
-
-function findWeekend(days: Weekdays): boolean {
-  return days === Weekdays.Friday || days === Weekdays.Saturday;
-}
-
-console.log(findWeekend(Weekdays.Friday));
-console.log(findWeekend(Weekdays.Monday));
-console.log(findWeekend(Weekdays.Saturday));
-
-// Exercise on enums
-// if u have some post and the post contains some fixed status which is unchanged. Implement enums for post status.
-
-enum PostStatus {
-  Draft = "Draft",
-  Archived = "Archived",
-  Delete = "Deleted",
-}
-
-type Post = {
-  title: string;
-  description: string;
-  status: PostStatus;
-};
-
-const post1: Post = {
-  title: "Typescript Tutorials",
-  description: "Hello  Typescript which gives the javascript a super power",
-  status: PostStatus.Archived,
-};
-
-console.log("Exercise of post1: ", post1.status);
-
-const post2: Post = {
-  title: "Javascript Tutorials",
-  description: "Hello Javascript which gives the web development a super power",
-  status: PostStatus.Draft,
-};
-
-console.log("Exercise of post2: ", post2.status);
-
-// ! 16. as const instead of enum
-
-// ? Why we use "as const" instead of enum
+// Explain the Syntax:
 /* 
-i. Zero runtime overhead
-ii. align with plain Javascript
-iii. gives the same type safety as enums
+- Type extends anotherType evaluates first
+- is 'Type' is match with anotherType will set the variable "TrueType" nor "FalseType"
+- the extends keyword checks that "Type" contains same as "anotherType" or at least contains one property of "anotherType"
 */
 
-// Defining a object
-const LOG_LEVEL = {
-  INFO: "info",
-  ERROR: "error",
-  DEBUG: "debug",
-  WARN: "warning",
-} as const;
+// Basic example
+type Car = {
+  name: string;
+  model: number;
+  year: number;
+};
 
-// Converts the LOG_LEVEL to Union "Info" |"Error"
-type LogLevel = (typeof LOG_LEVEL)[keyof typeof LOG_LEVEL];
+type Name = {
+  name: string;
+  purchaseDate: number;
+};
 
-function messageLog(message: string, level: LogLevel) {
-  console.log(`${message} : ${level}`);
-}
+type CarName = Car extends Name ? string : any;
 
-messageLog("Information Log: ", LOG_LEVEL.INFO); //Information Log:  : info
-messageLog("Error Log: ", "error"); // Error Log:  : error
-messageLog("Debugging Log: ", LOG_LEVEL.DEBUG); // Debugging Log:  : debug
-messageLog("Warning Log: ", "warning"); //Warning Log:  : warning
+const carName: CarName = "Ford";
+// Here Car contains one property of Name type which is {name: string}
+console.log("Basic example without using Generics or Constraints: ", carName);
+
+// ? Generic conditional type
+
+// Example-1:
+type IsString<T> = T extends string ? string : any;
+
+let a: IsString<string> = "Hello";
+let b: IsString<boolean> = false;
+let c: IsString<"arham"> = "Arham";
+
+console.log("Generic Conditional Type: ", a, b, c);
+
+// Example-2:
+type IsNumArray<T> = T extends number[] ? number : string;
+
+let num1: IsNumArray<number[]> = 9;
+let string1: IsNumArray<string[]> = "9";
+
+console.log("Generic Conditional type: ", num1, string1);
+
+// ? Constraints conditional type
+
+// Generics are used for reusable type. But if you want to reuse them for specific data type like number, araay etc add constraints with genrics type.
+
+// Syntax:
+// type Constraint<T extends T1 | T2> = T extends Type1 ? Type1 : Type2;
+
+// Example_1:
+type NumberOrString<T extends number | string> = T extends number
+  ? number
+  : string;
+
+const number: NumberOrString<number> = 5;
+const string: NumberOrString<string> = "5";
+// const boolean: NumberOrString<boolean> = true; //Type 'boolean' does not satisfy the constraint 'string | number'
+
+console.log("Constraints conditional type: ", number, string);
