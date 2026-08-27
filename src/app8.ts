@@ -62,6 +62,8 @@ type StringOrNumber = toArray<string | number>;
 
 let arrays_1: StringOrNumber = [5, 9, 8];
 let arrays_2: StringOrNumber = ["Rahim", "Karim", "Jashim"];
+// let arrays_3: StringOrNumber = [true, false, true]; // Type 'boolean' is not assignable to type 'string | number'.
+// let normalData: StringOrNumber = "Rahim"; //Type 'string' is not assignable to type 'StringOrNumber'.
 
 console.log("Condiotional type with Union: ", arrays_1, arrays_2);
 
@@ -85,7 +87,27 @@ let extractString_1: StringOnly = "Adbab"; //Allowed
 // let extractString_2: StringOnly = {}; //Type '{}' is not assignable to type 'string'.
 // let extractString_3: StringOnly = 123; //Type 'number' is not assignable to type 'string'.
 
-// ? 15.c Constraints conditional type
+// ? 15.c Conditional type with infer
+// Think as infer "pattern matches with captured group". TypeScript tells that if match the types of a certain shape capture the piece of that shape and give it a name. In a One-Sentence Version infer lets you say to TypeScript: "If this type looks like Array<something>, call that something X so I can use it."
+
+// The Analogy: A Funnel
+// Imagine pouring a type through a funnel that has a specific shape:
+/* 
+Type: string[]
+      ↓
+Funnel: Array<infer X>   ← "If it's an array, catch whatever is inside"
+      ↓
+Captured: X = string 
+*/
+
+// Example_1:
+type ArrayFruits<T> = T extends Array<infer X> ? X : never;
+
+const apple: ArrayFruits<string[]> = "Apple";
+const num_1: ArrayFruits<number[]> = 9;
+// const num_2: ArrayFruits<number> = 5; //Type '5' is not assignable to type 'never'.
+
+// ? 15.d Constraints conditional type
 
 // Generics are used for reusable type. But if you want to reuse them for specific data type like number, array etc add constraints with genrics type.
 
