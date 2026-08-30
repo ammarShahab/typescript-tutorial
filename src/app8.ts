@@ -9,7 +9,7 @@
 /* 
 - Type extends anotherType evaluates first
 - is 'Type' is match with anotherType will set the variable "TrueType" nor "FalseType"
-- the extends keyword checks that "Type" contains same as "anotherType" or at least contains one property of "anotherType"
+- the extends keyword checks that "Type" contains same as "anotherType" i.e Type has all required properties of anotherType, with compatible types.
 */
 
 // Basic example
@@ -21,12 +21,11 @@ type Car = {
 
 type Name = {
   name: string;
-  purchaseDate: number;
 };
 
-type CarName = Car extends Name ? string : any;
+type CarName = Car extends Name ? object : never;
 
-const carName: CarName = "Ford";
+const carName: CarName = { name: "Ford" };
 // Here Car contains one property of Name type which is {name: string}
 console.log("Basic example without using Generics or Constraints: ", carName);
 
