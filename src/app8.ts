@@ -26,7 +26,7 @@ type Name = {
 type CarName = Car extends Name ? object : never;
 
 const carName: CarName = { name: "Ford" };
-// Here Car matches one property with Name type which is {name: string}
+// Here Car matches all property of Name type which is {name: string}
 console.log("Basic example without using Generics or Constraints: ", carName);
 
 // ? 15.a Generic conditional type
