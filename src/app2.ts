@@ -55,7 +55,7 @@ const { name, price }: Product = sauce;
 console.log("Destructuring object: ", name, price);
 
 //! 7. Object type and type alias
-//! 7a. Object structure typing
+//? 7a. Object structure typing
 
 const student = {
   name: "Adnan Sami",
@@ -68,7 +68,7 @@ function studInfo(user: { name: string; age: number }) {
 
 console.log(studInfo(student));
 
-//! 7b. Type alias
+//? 7b. Type alias
 // type alias is used to define primitive like string and also complex type object and array.
 // example:
 
@@ -216,7 +216,7 @@ function fakeApi(): Promise<FormResponse> {
 
 formSubmit();
 
-//! 7c. type interface
+//? 7c. type interface
 // Interface is similar to type alias. Type alias and interface both can be extended but interface supports declaration merging. It is only used to define the structure of an object. It is also used to define the type of a variable that holds an object.
 
 interface Car {
