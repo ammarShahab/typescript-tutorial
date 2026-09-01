@@ -132,7 +132,7 @@ console.log(actorInfo(actor2));
 
 // definition: it is used to combine multiple types into one. it is used when we want to combine multiple types into a single type. it is used when we want to create a new type that has all the properties of the existing types.
 
-// Example:
+// Example_1:
 type Employee = {
   id: number;
   name: string;
@@ -150,7 +150,7 @@ const employee_1: Gender = {
 
 console.log("Type alias perform unions: ", employee_1);
 
-// Example:
+// Example_2:
 type User = {
   id: number;
   name: string;
@@ -179,7 +179,7 @@ userInfo(user_1);
 // Union (|)
 // definition: it is used to define a variable that can hold multiple types. it is used when we want to allow a variable to hold more than one type of value
 
-// Example:
+// Example_1:
 type response = "success" | "failed";
 
 function ApiResponse(getresponse: response) {
@@ -190,11 +190,11 @@ ApiResponse("failed");
 
 //Note: use case of union type is in dynamic form input field. where user can input string or number and also in API response where the response can be of different types i.e dynamic api response type.
 
-// Example:
+// Example_2:
 // use case example of form response with api calls
 type FormResponse =
   | { success: true; message: string }
-  | { success: false; errors: Record<string, string> }; //means object key and value pair
+  | { success: false; errors: Record<string, string> }; //means object key and value pair both contains string value but no number type {email: 123} is allowed. Here Record is a utility type.
 
 async function formSubmit() {
   const response: FormResponse = await fakeApi();
