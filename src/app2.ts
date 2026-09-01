@@ -81,7 +81,7 @@ const carName: CarName = "Toyota";
 const carModel: CarModel = "Axio";
 const carYear: CarYear = 2017;
 
-// ? Object
+// ? Non Primitive (Object)
 type Actor = {
   name: string;
   age: number;
