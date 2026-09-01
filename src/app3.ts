@@ -12,7 +12,7 @@
 */
 
 // ? i. String Literal
-// Examle: Simple assigning a custom type
+// Example: Simple assigning a custom type
 let color: "Red" | "Green";
 color = "Green";
 color = "Red";
