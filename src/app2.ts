@@ -93,7 +93,7 @@ type Actor = {
 const actor1: Actor = {
   name: "Pierce Brosnan",
   age: 55,
-  gender: "male",
+  gender: "he",
   hiredAmount: 10000,
   married: true,
 };
@@ -101,22 +101,24 @@ const actor1: Actor = {
 const actor2: Actor = {
   name: "Angelina Jolie",
   age: 50,
-  gender: "female",
+  gender: "she",
   hiredAmount: 9000,
 };
 
 function actorInfo(actor: Actor): string {
-  const pronoun = actor.gender === "female" ? "She" : "He";
-  const anotherPronoun = actor.gender === "female" ? "Her" : "His";
-  const chooseActorActress = actor.gender === "female" ? "actress" : "actor";
-  return `My favorite  ${chooseActorActress} name is ${
+  const chooseHeOrShe = actor.gender === "female" ? "She" : "He";
+  const chooseHisOrHer = actor.gender === "female" ? "Her" : "His";
+  const chooseActorOrActress = actor.gender === "female" ? "actress" : "actor";
+  return `My favorite  ${chooseActorOrActress} name is ${
     actor.name
-  }. ${pronoun} is a ${
+  }. ${chooseHeOrShe} is a ${
     actor.gender
-  } ${chooseActorActress}. ${anotherPronoun} age is ${
+  } ${chooseActorOrActress}. ${chooseHisOrHer} age is ${
     actor.age
-  }. ${pronoun} took ${actor.hiredAmount}$ per film. ${
-    actor.married ? `${pronoun} is married.` : `${pronoun} is not married.`
+  }. ${chooseHeOrShe} took ${actor.hiredAmount}$ per film. ${
+    actor.married
+      ? `${chooseHeOrShe} is married.`
+      : `${chooseHeOrShe} is not married.`
   }`;
 }
 console.log(
