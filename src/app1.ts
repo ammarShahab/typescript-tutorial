@@ -158,7 +158,7 @@ try {
   }
   throwError("This is an error message");
 } catch (error) {
-  console.log(error);
+  console.log("From Try catch block: ", error);
 }
 
 //! 3g. Nullish Coalescning and optional chaining
