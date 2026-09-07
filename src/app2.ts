@@ -209,7 +209,7 @@ async function formSubmit() {
 
 function fakeApi(): Promise<FormResponse> {
   const random = Math.random() > 0.5;
-  return Promise.resolve(
+  return Promise.resolve<FormResponse>(
     random
       ? { success: true, message: "Form submitted successfully" }
       : { success: false, errors: { email: "Invalid email format" } },
