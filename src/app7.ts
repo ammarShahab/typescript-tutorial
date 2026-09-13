@@ -62,7 +62,7 @@ const booleanResponse: APIResponse<boolean> = {
   data: true,
 };
 
-// ? Generic interface as a function types (Ordinary function will not work Use only arrow function or function declaration)
+// ? Generic interface as a function types (Ordinary function will not work so use only arrow function or function declaration)
 
 interface function_interface<T, U> {
   (input: T): U;
