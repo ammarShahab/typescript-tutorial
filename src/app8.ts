@@ -87,7 +87,7 @@ let extractString_1: StringOnly = "Adbab"; //Allowed
 // let extractString_3: StringOnly = 123; //Type 'number' is not assignable to type 'string'.
 
 // ? 15.c Conditional type with infer
-// Think as infer "pattern matches with captured group". TypeScript tells that if match the types of a certain shape capture the piece of that shape and give it a name. In a One-Sentence Version infer lets you say to TypeScript: "If this type looks like Array<something>, call that something X so I can use it."
+// Think as infer "pattern matches with captured group". TypeScript tells that if match the types of a certain shape capture the piece of that shape and give it a name. In a One-Sentence Version, infer lets you say to TypeScript: "If this type looks like Array<something>, call that something X so I can use it."
 
 // The Analogy: A Funnel
 // Imagine pouring a type through a funnel that has a specific shape:
