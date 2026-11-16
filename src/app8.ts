@@ -1,4 +1,4 @@
-// ! 15. Condiotional Type
+// ! 15. Conditional Type
 
 // In TypeScript, conditional type is used to assign a type of the variable based on the condition.
 
