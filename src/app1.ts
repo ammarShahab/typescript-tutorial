@@ -161,10 +161,10 @@ try {
   console.log("From Try catch block: ", error);
 }
 
-//! 3g. Nullish Coalescning and optional chaining
-// Nullish Coalescning - If the value is null or undefined it uses the default value
+//! 3g. Nullish Coalescing and optional chaining
+// Nullish Coalescing - If the value is null or undefined it uses the default value
 function CheckUser(user?: string) {
-  console.log("Nullish Coalescning: ", user ?? "Guest");
+  console.log("Nullish Coalescing: ", user ?? "Guest");
 }
 
 CheckUser("admin"); //admin
