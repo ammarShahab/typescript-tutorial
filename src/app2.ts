@@ -213,7 +213,10 @@ function fakeApi(): Promise<FormResponse> {
   return Promise.resolve<FormResponse>(
     random
       ? { success: true, message: "Form submitted successfully" }
-      : { success: false, errors: { email: "Invalid email format" } },
+      : {
+          success: false,
+          errors: { email: "Invalid email format" },
+        },
   );
 }
 
