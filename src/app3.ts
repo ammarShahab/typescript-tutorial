@@ -176,7 +176,7 @@ function move(vehicle: Car | Boat) {
   }
 }
 
-const car1: Car = {
+const car: Car = {
   drive: () => {
     console.log("Car is driving");
   },
@@ -188,7 +188,7 @@ const boat: Boat = {
   },
 };
 
-move(car1);
+move(car);
 move(boat);
 
 //! 9.c. instanceof type guard
