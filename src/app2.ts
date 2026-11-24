@@ -20,6 +20,7 @@ type objType = {
   name: string;
   age: number;
 };
+
 const user1: objType = {
   name: "Akram",
   age: 48,
