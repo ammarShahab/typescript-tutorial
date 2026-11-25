@@ -1,138 +1,82 @@
-//! 16. Enum Type
+//! 17. Implement keyword
+// Implement keyword is used to implement an interface. i.e following a implemented structure
 
-// What is Enum Type?
-// Enum is a type that represents a set of named constants. It is used to define a group of related values that have a fixed set of possible values. It is also used to define a set of related constants that can be used to represent a specific set of values. You can use both only enums and const enums.
-
-// Types of enums and the use case
-
-// i. Numeric enums (it will by default returns numeric value)
-// used for Position or Direction
-enum Keys {
-  Up,
-  Down,
-  Left,
-  Right,
+// Real World example with payment system
+interface IPayment {
+  amount: number;
+  paymentProcess: () => void;
 }
 
-console.log(Keys.Up); //0
-console.log(Keys.Right); //3
-
-// Another use case is for Role
-
-enum Role {
-  Guest,
-  User,
-  Admin,
+class creditCardPayment implements IPayment {
+  amount: number;
+  constructor(amount: number) {
+    this.amount = amount;
+  }
+  paymentProcess() {
+    console.log(`Your credit card payment is ${this.amount}tk.`);
+  }
 }
 
-const role = Role.Admin;
-console.log("role", role);
+class payPalPayment implements IPayment {
+  amount: number;
+  constructor(amount: number) {
+    this.amount = amount;
+  }
 
-// ii. String Enum (enums এ string value set করে দেয়া হয়।)
-// used for HTTP or API call status
-
-const enum Status {
-  Active = "Active",
-  Pending = "Pending",
-  Reject = "Reject",
+  paymentProcess() {
+    console.log(`Your paypal payment is ${this.amount}tk.`); //if u avoid any of the properties of interface, it will throw an error
+  }
 }
 
-console.log(Status.Active); //Active
-console.log(Status.Reject); //Reject
+const payWithCreditCard = new creditCardPayment(2252);
+payWithCreditCard.paymentProcess();
 
-// iii. Heterogeneous Enum (যখন Enum-এ নিউমেরিক এবং স্ট্রিং উভয় ধরনের মান একসাথে থাকে, তখন তাকে বলা হয় Heterogeneous Enum)
+const payWithPayPal = new payPalPayment(2500);
+payWithPayPal.paymentProcess();
 
-enum Responses {
-  Success = 1,
-  Failure = "Failed",
+// Exercise: Vehicle Management system
+
+interface Transport {
+  name: string;
+  model: string;
+  move: () => void;
 }
 
-console.log(Responses.Success); //1
-console.log(Responses.Failure); //Failed
-
-// use case for toggle states or mode
-enum Mode {
-  Dark,
-  Light,
-}
-console.log("Mode", Mode.Light);
-
-//Exercise: create a function to find weekend
-
-enum Weekdays {
-  Saturday,
-  Sunday,
-  Monday,
-  Tuesday,
-  Wednesday,
-  Thursday,
-  Friday,
+class Vehicle implements Transport {
+  private engineNumber: number = 523554;
+  protected year: number = 2025;
+  constructor(
+    public name: string,
+    public model: string,
+  ) {}
+  move() {
+    console.log(
+      `${this.name} truck that's engine number is ${this.engineNumber}, Model ${this.model} is moving.`,
+    );
+  }
 }
 
-function findWeekend(days: Weekdays): boolean {
-  return days === Weekdays.Friday || days === Weekdays.Saturday;
+class ElectricTruck extends Vehicle {
+  charge() {
+    console.log(
+      `ElectricTruck ${this.name} - ${this.model} - ${this.year} is charging.`,
+    );
+    /* console.log(
+      `ElectrTruck ${this.name} - ${this.model} - ${this.year} - ${this.engineNumber}is charging.`
+    ); */ //but if you try to access the private property engineNumber, it will throw an error
+  }
 }
 
-console.log(findWeekend(Weekdays.Friday));
-console.log(findWeekend(Weekdays.Monday));
-console.log(findWeekend(Weekdays.Saturday));
-
-// Exercise on enums
-// if u have some post and the post contains some fixed status which is unchanged. Implement enums for post status.
-
-enum PostStatus {
-  Draft = "Draft",
-  Archived = "Archived",
-  Delete = "Deleted",
+class AutoMobileCar extends Vehicle {
+  fuelRefill() {
+    console.log(
+      `Auto mobile car ${this.name} - ${this.model} - ${this.year} is refueling.`,
+    );
+  }
 }
 
-type Post = {
-  title: string;
-  description: string;
-  status: PostStatus;
-};
-
-const post1: Post = {
-  title: "Typescript Tutorials",
-  description: "Hello  Typescript which gives the javascript a super power",
-  status: PostStatus.Archived,
-};
-
-console.log("Exercise of post1: ", post1.status);
-
-const post2: Post = {
-  title: "Javascript Tutorials",
-  description: "Hello Javascript which gives the web development a super power",
-  status: PostStatus.Draft,
-};
-
-console.log("Exercise of post2: ", post2.status);
-
-// ! 17. as const instead of enum
-
-// ? Why we use "as const" instead of enum
-/* 
-i. Zero runtime overhead
-ii. align with plain Javascript
-iii. gives the same type safety as enums
-*/
-
-// Defining a object
-const LOG_LEVEL = {
-  INFO: "info",
-  ERROR: "error",
-  DEBUG: "debug",
-  WARN: "warning",
-} as const;
-
-// Converts the LOG_LEVEL to Union "Info" |"Error"
-type LogLevel = (typeof LOG_LEVEL)[keyof typeof LOG_LEVEL];
-
-function messageLog(message: string, level: LogLevel) {
-  console.log(`${message} : ${level}`);
-}
-
-messageLog("Information Log: ", LOG_LEVEL.INFO); //Information Log:  : info
-messageLog("Error Log: ", "error"); // Error Log:  : error
-messageLog("Debugging Log: ", LOG_LEVEL.DEBUG); // Debugging Log:  : debug
-messageLog("Warning Log: ", "warning"); //Warning Log:  : warning
+const truck1 = new ElectricTruck("Tesla", "CyberTruck");
+truck1.move();
+truck1.charge();
+const automobilecar = new AutoMobileCar("Toyota", "Fielder");
+automobilecar.fuelRefill();

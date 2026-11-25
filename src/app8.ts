@@ -1,4 +1,4 @@
-// ! 15. Conditional Type
+//! 16. Conditional Type
 
 // In TypeScript, conditional type is used to assign a type of the variable based on the condition.
 
@@ -29,7 +29,7 @@ const carName: CarName = { name: "Ford" };
 // Here Car matches all property of Name type which is {name: string}
 console.log("Basic example without using Generics or Constraints: ", carName);
 
-// ? 15.a Generic conditional type
+// ? 16.a Generic conditional type
 
 // Example-1:
 
@@ -50,7 +50,7 @@ let string_1: IsNumArray<string> = "Generic Condiotional";
 
 console.log("Generic Conditional type: ", num1, string_1);
 
-// ? 15.b Conditional type with Unions
+// ? 16.b Conditional type with Unions
 // Conditional types are particularly useful with the Union types, where they are automatically distributed with all the Union members
 
 // Example_1.a: When used with a union type, it applies to each member of the union
@@ -86,7 +86,7 @@ let extractString_1: StringOnly = "Adbab"; //Allowed
 // let extractString_2: StringOnly = {}; //Type '{}' is not assignable to type 'string'.
 // let extractString_3: StringOnly = 123; //Type 'number' is not assignable to type 'string'.
 
-// ? 15.c Conditional type with infer
+// ? 16.c Conditional type with infer
 // Think as infer "pattern matches with captured group". TypeScript tells that if match the types of a certain shape capture the piece of that shape and give it a name. In a One-Sentence Version, infer lets you say to TypeScript: "If this type looks like Array<something>, call that something X so I can use it."
 
 // The Analogy: A Funnel
@@ -106,7 +106,7 @@ const apple: ArrayFruits<string[]> = "Apple";
 const num_1: ArrayFruits<number[]> = 9;
 // const num_2: ArrayFruits<number> = 5; //Type '5' is not assignable to type 'never'.
 
-// ? 15.d Constraints conditional type
+// ? 16.d Constraints conditional type
 
 // Generics are used for reusable type. But if you want to reuse them for specific data type like number, array etc add constraints with genrics type.
 

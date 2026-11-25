@@ -23,7 +23,7 @@
 // What is static typing?
 // Static typing is a feature of TypeScript that allows you to specify the type of a variable, function, or object at compile time. This means that the type of a variable is checked before the code is executed, which can help catch errors early in the development process or in compile-time checks.
 
-//! 1 Primitives
+//! 1. Primitives
 //! 1a. string
 let studentName: string = "Arham"; // specify the type of variable
 studentName = "Afnan"; // valid
@@ -79,7 +79,7 @@ console.log("any", isLoggedIn);
 const result = JSON.parse('{"name" : "Alice", "age":"30"}');
 console.log(result);
 
-//! 3a. ii. variable without initialization
+//! 3a.ii. variable without initialization
 // when a variable is declared without initializing any value, it is assigned the value of "undefined" by default and its type is "any"
 
 // example 1

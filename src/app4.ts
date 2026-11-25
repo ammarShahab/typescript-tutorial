@@ -1,190 +1,156 @@
-//! 10. typescript OOP
+//! 10. Generics
 
-// Basic concept of OOP
+// What is Generics?
+// Generics is a feature in TypeScript that allows you to create reusable components that can work with different types of data. It is a way to define a type that can be used in multiple places in your code, without having to specify the type each time.
 
-//! 10a. Constructor
-class Person {
+// Why generics is used which is explained in the following concepts
+// if i have multiple data type and send to the same function  we have make a each function with each data type. It will be very difficult to maintain and it will be very hard to debug. See the following example
+
+function logString(input: string): void {
+  console.log(input);
+}
+function logNumber(input: number): void {
+  console.log(input);
+}
+function logBoolean(input: boolean): void {
+  console.log(input);
+}
+
+logString("Hello");
+logNumber(123);
+logBoolean(true);
+
+// from the upper example we can see that we have to write the same function for each data type. So  instead of that we use generics. Generics is used to create reusable components that can work with different types of data.
+
+// Example
+function logInput<T>(input: T) {
+  // here <T> is generics i.e it can be any type and set the T type to input
+  console.log(input);
+}
+
+// call the function with types
+logInput<string>("Generic");
+logInput<boolean>(false);
+logInput<number>(567);
+
+//? Use case of Generics in interface
+// If u don't know the what type of data is coming in that case Generic is also used
+
+interface APIResponse<T> {
+  //Here set the <T> as variable
+  status: number;
+  message: string;
+  data: T; //set the T as data type
+}
+
+// sending object in a APIResponse
+const objectResponse: APIResponse<object> = {
+  //here define the data type in a <> bracket
+  status: 200,
+  message: "Ok",
+  data: {
+    name: "Ammar",
+  },
+  //if u pass string data type it will show error
+  //name: 'Ammar', //show error type string is not assignable to type object
+};
+
+// sending boolean in a APIResponse. In that way u will create a one APIResponse and send multiple data type using generics
+const booleanResponse: APIResponse<boolean> = {
+  status: 200,
+  message: "Ok",
+  data: true,
+};
+
+// ? Generic interface as a function types (Ordinary function will not work so use only arrow function or function declaration)
+
+interface function_interface<T, U> {
+  (input: T): U;
+}
+
+// Note: as the function_interface is the structure of a function so it will placed with  stringToNumber function declaration.
+const stringToNumber: function_interface<string, number> = (input) => {
+  return input.length;
+};
+
+console.log("Function Interface: ", stringToNumber("Hello! World"));
+
+//? Use case of type in Generics
+const addId = function <T>(obj: T) {
+  // here <T> is generics i.e it can be any type and set the T type to obj
+  const id = Math.floor(Math.random() * 100);
+  return { ...obj, id };
+};
+
+type userType = {
   name: string;
   age: number;
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
+};
 
-  greet() {
-    console.log(
-      `Hello ${this.name}, I think your age is ${this.age} years old.`,
-    );
-  }
+const user1: userType = {
+  name: "Sabbir",
+  age: 37,
+};
+
+const sabbir = addId<userType>(user1);
+console.log(sabbir); //{ name: 'Sabbir', age: 37, id: 18 }
+
+// But the problem is if we pass any other type of data without setting the generics during function call <userType>, it will not throw an error. It will just ignore the type and add the id property to the object.
+console.log("add Id", addId(true)); // { id: 92 } //What happens here, You passed a boolean value (true). So, TypeScript infers T = boolean. Now, the return line is: return { ...obj, id }; But here’s the catch obj is not an object (it’s a primitive boolean). The spread operator (...obj) only works correctly with objects and arrays — not with primitives like boolean, string, or number. So internally: { ...true, id } becomes just { id: 42 }, because there’s nothing to spread from a boolean.
+
+// console.log("add id using userType: ", addId<userType>(true));//Argument of type 'boolean' is not assignable to parameter of type 'userType'.
+
+//! 11. Constraints (সিমাবদ্ধতা) (give the rule using extends)
+// To solve the upper problem to take full control of the type safety from function level there is another method called Constraints. See the following example
+
+// We use extends with the datatype in the <T> from the function level to get the full control of type safety. So the type safety is controlled in the function level. If you send the different data type during function call will show error.
+const addId2 = function <T extends userType>(obj: T) {
+  const id = Math.floor(Math.random() * 1000000);
+  return { ...obj, id };
+};
+
+const user2 = {
+  name: "Ehsan",
+  age: 37,
+  country: "Bangladesh", //as the data type accepts name and age which should not avoided we can also add country in user2 which will not show any error because the extends method. Here, Type T must contain at least name: string and age: number. Having additional properties is completely allowed.
+};
+
+const ehsan = addId2(user2);
+console.log(ehsan); //{ name: 'Ehsan', age: 37, country: 'Bangladesh', id: 429923 }
+
+// Now if u pass different data type it will show error. So using constraints give the proper type safety from the function level.
+// console.log(addId2(true)); //show error
+
+// Another example of problem using Generic is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error after compilation, it shows undefined after compilation.
+function logLength<T>(params: T) {
+  // console.log("Log Length is: ", params.length);
 }
 
-const person1 = new Person("Adil", 26); //When a class is called with the new keyword, the resulting object is referred to as an instance of that class. Which is also called creating constructor.
-person1.greet();
-console.log(person1.name); //to access the property of the object
+logLength<string>("Hellow Worl"); //showing error
+logLength<string[]>(["a", "b"]); //2
+logLength<number>(123); //undefined without showing any error
 
-//! 10b. Modifier (public, private, protected)
-// In class there are 3 types of modifiers
-/* *
- *i. public: accessible from anywhere
- *ii. private: accessible only within the class
- *iii. protected: accessible within the class and its subclasses
- */
+// to solve this we use Constraints and extends length as { length: number } i.e set the rule where type of length will be number
+function logLength2<T extends { length: number }>(params: T) {
+  console.log("Log Length 2 is: ", params.length);
+}
+logLength2<string>("Hellow World Hellow"); //19
+// logLength2<number>(123); //showing error with Type number does not satisfy the constraints { length: number }
+logLength2<string[]>(["b", "c", "d"]);
 
-//Example of public, private and protected modifiers
+// Constraints exercise in apiResponse.ts file
 
-class BankAccount {
-  public accountHolderName: string;
-  private balance: number;
-  protected accountType: string;
+// ! 11.a. Using type parameter in Generic Constraints
+// TypeScript allows you to define type parameter, which is a constraints of the another parameter of the same function.
 
-  constructor(name: string, amount: number) {
-    this.accountHolderName = name;
-    this.balance = amount;
-    this.accountType = "Saving";
-  }
-
-  showBalance() {
-    console.log(
-      `${this.accountHolderName} account balance is ${this.balance}tk. His account type is ${this.accountType}.`,
-    );
-  }
+function getValue<T extends object, U extends keyof T>(obj: T, key: U) {
+  return obj[key];
 }
 
-const user1 = new BankAccount("Arham", 1000);
-console.log("Account Holder Name", user1.accountHolderName); //can access public property from outside the class
-user1.showBalance(); //can access public property from outside the class
+const user3 = {
+  name: "Fahim Kadir",
+  age: 35,
+};
 
-// but u cannot access the private and protected property from outside the class
-// console.log(user1.balance); //due to private
-// console.log(user1.accountType); //due to protected
-
-// Example of protected modifiers (accessible within the class and its subclasses)
-class SavingAccount extends BankAccount {
-  showAccountType() {
-    console.log(
-      `${this.accountHolderName}'s account type is ${this.accountType}.`,
-      // but if u want to access the balance property from outside the class according to following example, it will show error because balance is a private property which cannot be accessed from subclasses, only accessible within the class.
-      // `${this.accountHolderName}'s account type is ${this.accountType}. Balance is ${this.balance}tk.`
-    );
-  }
-}
-
-const user2 = new SavingAccount("Afnan", 1000);
-user2.showAccountType();
-
-//! 10c. Private vs Protected Modifier Example
-// Private: NOT accessible in subclasses (only within the class itself)
-// Protected: Accessible in subclasses
-
-class Vehicle {
-  private engineNumber: string; // private - only accessible within Vehicle class
-  protected brand: string; // protected - accessible in Vehicle and its subclasses
-
-  constructor(engineNumber: string, brand: string) {
-    this.engineNumber = engineNumber;
-    this.brand = brand;
-  }
-
-  showEngineNumber() {
-    console.log(`Engine Number: ${this.engineNumber}`);
-  }
-}
-
-class Car extends Vehicle {
-  private model: string;
-
-  constructor(engineNumber: string, brand: string, model: string) {
-    super(engineNumber, brand);
-    this.model = model;
-  }
-
-  showCarDetails() {
-    // console.log(`Engine: ${this.engineNumber}`); // ✗ ERROR: Cannot access private property from parent class in the subclass
-    console.log(`Model: ${this.model}`); // ✓ Can access private property within the same class
-    console.log(`Brand: ${this.brand}`); // ✓ Can access protected property brand from parent class in the subclass
-  }
-}
-
-const myCar = new Car("ENG123456", "Toyota", "Camry");
-myCar.showEngineNumber(); // ✓ Can call public method
-myCar.showCarDetails(); // ✓ Can call public method
-// console.log(myCar.engineNumber); // ✗ ERROR: Cannot access private property from outside the class
-// console.log(myCar.brand); // ✗ ERROR: Cannot access protected property from outside the class
-
-// But the best industry standard practice is using type modifiers
-class Employee {
-  constructor(
-    public name: string,
-    public age: number,
-    private _id: string,
-  ) {}
-  showId() {
-    console.log("Hasan ID is: ", this._id);
-  }
-}
-
-const hasan = new Employee("Hasan", 35, "59004");
-console.log("type modifiers best practices", hasan);
-hasan.showId(); //access the private property from the class
-
-//! 10d. Inheritance
-// Inheritance is a mechanism in which a new class is created from an existing class. The new class is called a subclass and the existing class is called a superclass.
-
-class Animal {
-  constructor(private name: string) {
-    // this.name = name;
-  }
-  move() {
-    return `${this.name} is moving`;
-  }
-}
-
-class Dog extends Animal {
-  bark() {
-    return "Woof Woof . . . ";
-  }
-}
-
-const mydog = new Dog("Tommy");
-console.log(`${mydog.move()} and barking ${mydog.bark()}`);
-
-// when the property is not required for all subclasses use optional (?) at the end line
-class Creature {
-  constructor(
-    public name: string,
-    protected price: number,
-    private type?: string, //this optional sign should be at the end nor it will show error
-  ) {}
-
-  showCreatureInfo() {
-    console.log(
-      `${this.name} is a ${this.type} breed. It's price is ${this.price}$.`,
-    );
-  }
-}
-
-const tommy = new Creature("Tommy", 500, "labrador");
-tommy.showCreatureInfo();
-
-// console.log(tommy.breed);
-// console.log(tommy.price);
-
-class Cat extends Creature {
-  constructor(
-    name: string,
-    price: number,
-    private category: string,
-  ) {
-    super(name, price);
-  }
-  showCatInfo() {
-    console.log(
-      `${this.name} is a ${this.category} which costs ${this.price}$`,
-    );
-  }
-}
-
-const kitty = new Cat("Kitty", 250, "Cat");
-kitty.showCatInfo();
-console.log(kitty.name);
-console.log(tommy.name);
+const result = getValue(user3, "name");
+console.log("Using type parameter in generics constraints: ", result);

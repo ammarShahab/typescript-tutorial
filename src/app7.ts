@@ -1,156 +1,59 @@
-//! 13. Generics
+//! 15. Getter and Setter
+// Getters and setters are used to access and modify the value of a property in an object. They are defined using the get and set keywords, respectively.
 
-// What is Generics?
-// Generics is a feature in TypeScript that allows you to create reusable components that can work with different types of data. It is a way to define a type that can be used in multiple places in your code, without having to specify the type each time.
+class Student {
+  private _courseNumber = 1;
+  protected subjectTaken = 5;
 
-// Why generics is used which is explained in the following concepts
-// if i have multiple data type and send to the same function  we have make a each function with each data type. It will be very difficult to maintain and it will be very hard to debug. See the following example
+  constructor(
+    public name: string,
+    public semester: number,
+  ) {}
 
-function logString(input: string): void {
-  console.log(input);
-}
-function logNumber(input: number): void {
-  console.log(input);
-}
-function logBoolean(input: boolean): void {
-  console.log(input);
-}
+  // in getter u can use return type, here is string
+  get studentInfo(): string {
+    return `Name: ${this.name} is in ${this.semester} semester`;
+  }
 
-logString("Hello");
-logNumber(123);
-logBoolean(true);
+  get courseCount(): number {
+    return this._courseNumber;
+  }
 
-// from the upper example we can see that we have to write the same function for each data type. So  instead of that we use generics. Generics is used to create reusable components that can work with different types of data.
+  //   for calculating any data we use setter, but you cannot use any return type in setter function
+  set courseCount(_courseNumber: number) {
+    if (_courseNumber <= 1) {
+      throw new Error("Course Number should be more than 1");
+    }
+    this.courseCount = _courseNumber;
+  }
 
-// Example
-function logInput<T>(input: T) {
-  // here <T> is generics i.e it can be any type and set the T type to input
-  console.log(input);
-}
+  private deleteToken() {
+    console.log("Token Deleted Successfully");
+  }
 
-// call the function with types
-logInput<string>("Generic");
-logInput<boolean>(false);
-logInput<number>(567);
-
-//? Use case of Generics in interface
-// If u don't know the what type of data is coming in that case Generic is also used
-
-interface APIResponse<T> {
-  //Here set the <T> as variable
-  status: number;
-  message: string;
-  data: T; //set the T as data type
+  // protected data is accessible within the class and its subclasses
+  protected updatedCourseCount() {
+    this._courseNumber = 5;
+  }
 }
 
-// sending object in a APIResponse
-const objectResponse: APIResponse<object> = {
-  //here define the data type in a <> bracket
-  status: 200,
-  message: "Ok",
-  data: {
-    name: "Ammar",
-  },
-  //if u pass string data type it will show error
-  //name: 'Ammar', //show error type string is not assignable to type object
-};
+const amir = new Student("Amir", 3);
+console.log("Student Info: ", amir.studentInfo);
+console.log("Course Count: ", amir.courseCount);
 
-// sending boolean in a APIResponse. In that way u will create a one APIResponse and send multiple data type using generics
-const booleanResponse: APIResponse<boolean> = {
-  status: 200,
-  message: "Ok",
-  data: true,
-};
+// cannot access the private property from outside the class which is only accessible within the class
+// amir.deleteToken() //shows error
 
-// ? Generic interface as a function types (Ordinary function will not work so use only arrow function or function declaration)
+// you cannot access the protected data from outside the class
+// amir.updatedCourseCount(); // shows error
 
-interface function_interface<T, U> {
-  (input: T): U;
+class StaffStudent extends Student {
+  takenSubject() {
+    this.subjectTaken = 7;
+    console.log(`${this.name} took ${this.subjectTaken} subjects.`);
+  }
 }
 
-// Note: as the function_interface is the structure of a function so it will placed with  stringToNumber function declaration.
-const stringToNumber: function_interface<string, number> = (input) => {
-  return input.length;
-};
-
-console.log("Function Interface: ", stringToNumber("Hello! World"));
-
-//? Use case of type in Generics
-const addId = function <T>(obj: T) {
-  // here <T> is generics i.e it can be any type and set the T type to obj
-  const id = Math.floor(Math.random() * 100);
-  return { ...obj, id };
-};
-
-type userType = {
-  name: string;
-  age: number;
-};
-
-const user1: userType = {
-  name: "Sabbir",
-  age: 37,
-};
-
-const sabbir = addId<userType>(user1);
-console.log(sabbir); //{ name: 'Sabbir', age: 37, id: 18 }
-
-// But the problem is if we pass any other type of data without setting the generics during function call <userType>, it will not throw an error. It will just ignore the type and add the id property to the object.
-console.log("add Id", addId(true)); // { id: 92 } //What happens here, You passed a boolean value (true). So, TypeScript infers T = boolean. Now, the return line is: return { ...obj, id }; But here’s the catch obj is not an object (it’s a primitive boolean). The spread operator (...obj) only works correctly with objects and arrays — not with primitives like boolean, string, or number. So internally: { ...true, id } becomes just { id: 42 }, because there’s nothing to spread from a boolean.
-
-// console.log("add id using userType: ", addId<userType>(true));//Argument of type 'boolean' is not assignable to parameter of type 'userType'.
-
-//! 14. Constraints (সিমাবদ্ধতা) (give the rule using extends)
-// To solve the upper problem to take full control of the type safety from function level there is another method called Constraints. See the following example
-
-// We use extends with the datatype in the <T> from the function level to get the full control of type safety. So the type safety is controlled in the function level. If you send the different data type during function call will show error.
-const addId2 = function <T extends userType>(obj: T) {
-  const id = Math.floor(Math.random() * 1000000);
-  return { ...obj, id };
-};
-
-const user2 = {
-  name: "Ehsan",
-  age: 37,
-  country: "Bangladesh", //as the data type accepts name and age which should not avoided we can also add country in user2 which will not show any error because the extends method. Here, Type T must contain at least name: string and age: number. Having additional properties is completely allowed.
-};
-
-const ehsan = addId2(user2);
-console.log(ehsan); //{ name: 'Ehsan', age: 37, country: 'Bangladesh', id: 429923 }
-
-// Now if u pass different data type it will show error. So using constraints give the proper type safety from the function level.
-// console.log(addId2(true)); //show error
-
-// Another example of problem using Generic is when we want to get the length of the string using generics in a function as shown in the following example it will show error because string does not have length property. but it will not show any error after compilation, it shows undefined after compilation.
-function logLength<T>(params: T) {
-  // console.log("Log Length is: ", params.length);
-}
-
-logLength<string>("Hellow Worl"); //showing error
-logLength<string[]>(["a", "b"]); //2
-logLength<number>(123); //undefined without showing any error
-
-// to solve this we use Constraints and extends length as { length: number } i.e set the rule where type of length will be number
-function logLength2<T extends { length: number }>(params: T) {
-  console.log("Log Length 2 is: ", params.length);
-}
-logLength2<string>("Hellow World Hellow"); //19
-// logLength2<number>(123); //showing error with Type number does not satisfy the constraints { length: number }
-logLength2<string[]>(["b", "c", "d"]);
-
-// Constraints exercise in apiResponse.ts file
-
-// ! 14.a. Using type parameter in Generic Constraints
-// TypeScript allows you to define type parameter, which is a constraints of the another parameter of the same function.
-
-function getValue<T extends object, U extends keyof T>(obj: T, key: U) {
-  return obj[key];
-}
-
-const user3 = {
-  name: "Fahim Kadir",
-  age: 35,
-};
-
-const result = getValue(user3, "name");
-console.log("Using type parameter in generics constraints: ", result);
+// protected data is accessible within the class and its subclasses
+const akhi = new StaffStudent("Akhi", 4);
+akhi.takenSubject();
