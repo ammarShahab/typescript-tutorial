@@ -6,6 +6,30 @@ A personal TypeScript learning repository containing standalone lesson scripts a
 
 There is no single application entrypoint. Each script in `src/` (`app1.ts` through `app9.ts`, `practice.ts`, `exercise.ts`, `practiceExpress.ts`, etc.) is an independent lesson or practice module.
 
+## Lesson Sequence
+
+The numbered lessons run sequentially from `app1.ts` through `app9.ts`:
+
+1. Primitives — `src/app1.ts`
+2. Non Primitives — `src/app1.ts`
+3. Special Types — `src/app1.ts`
+4. Rest operator — `src/app2.ts`
+5. Spread Operator — `src/app2.ts`
+6. Destructuring — `src/app2.ts`
+7. Object type and type alias — `src/app2.ts`
+8. Literal types — `src/app3.ts`
+9. Type Narrowing — `src/app3.ts`
+10. Generics — `src/app4.ts`
+11. Constraints — `src/app4.ts`
+12. Enum Type — `src/app5.ts`
+13. `as const` instead of enum — `src/app5.ts`
+14. TypeScript OOP — `src/app6.ts`
+15. Getter and Setter — `src/app7.ts`
+16. Conditional Type — `src/app8.ts`
+17. Implement keyword — `src/app9.ts`
+
+Practice/exercise modules (`exercise.ts`, `calculator_exercise.ts`, `practice.ts`, `practiceExpress.ts`, `apiResponse.ts`, `user_profile.ts`) carry no sequence numbers and are referenced from within the numbered lessons.
+
 ## Commands
 
 - **Run a lesson directly:**
