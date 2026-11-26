@@ -157,6 +157,7 @@ function OwnerVehicle(vehicleList: Owner) {
 
 OwnerVehicle("car");
 
+// ? Function with keyof Constraints
 function getValue<T, U extends keyof T>(obj: T, key: U) {
   return obj[key];
 }
