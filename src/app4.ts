@@ -4,7 +4,7 @@
 // Generics is a feature in TypeScript that allows you to create reusable components that can work with different types of data. It is a way to define a type that can be used in multiple places in your code, without having to specify the type each time.
 
 // Why generics is used which is explained in the following concepts
-// if i have multiple data type and send to the same function  we have make a each function with each data type. It will be very difficult to maintain and it will be very hard to debug. See the following example
+// if i have multiple data type and send to the same function  we have make a each function with each data type which is fixed and only work with fixed data type. It will be very difficult to maintain and it will be very hard to debug. See the following example of function without generics
 
 function logString(input: string): void {
   console.log(input);
@@ -28,7 +28,7 @@ function logInput<T>(input: T) {
   console.log(input);
 }
 
-// call the function with types
+// call the function with multiple data types
 logInput<string>("Generic");
 logInput<boolean>(false);
 logInput<number>(567);
