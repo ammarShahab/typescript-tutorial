@@ -24,7 +24,7 @@ logBoolean(true);
 
 // Example
 function logInput<T>(input: T) {
-  // here <T> is generics i.e it can be any type and set the T type to input
+  // here <T> is a placeholder for any data type. Now you can work with any data type like string, number, boolean etc.
   console.log(input);
 }
 
