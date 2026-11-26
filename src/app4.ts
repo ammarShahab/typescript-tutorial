@@ -140,10 +140,24 @@ logLength2<string[]>(["b", "c", "d"]);
 
 // Constraints exercise in apiResponse.ts file
 
-// ! 11.a. Using type parameter in Generic Constraints (KeyOf constraint with generics)
-// TypeScript allows you to define type parameter, which is a constraints of the another parameter of the same function.
+// ! 11.a. KeyOf constraint with generics
+// ? keyof and Generic Constraints
+interface Vehicles {
+  car: string;
+  bike: string;
+  ship: string;
+}
 
-function getValue<T extends object, U extends keyof T>(obj: T, key: U) {
+type Owner = "car" | "bike" | "ship"; //manual method
+type Owner2 = keyof Vehicles; // automatic method; keyof Vehicles gives us the Union of keys "car" | "bike" | "ship"
+
+function OwnerVehicle(vehicleList: Owner) {
+  console.log("Owner Vehicles Lists are: ", vehicleList);
+}
+
+OwnerVehicle("car");
+
+function getValue<T, U extends keyof T>(obj: T, key: U) {
   return obj[key];
 }
 
