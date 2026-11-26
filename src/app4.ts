@@ -140,7 +140,7 @@ logLength2<string[]>(["b", "c", "d"]);
 
 // Constraints exercise in apiResponse.ts file
 
-// ! 11.a. Using type parameter in Generic Constraints
+// ! 11.a. Using type parameter in Generic Constraints (KeyOf constraint with generics)
 // TypeScript allows you to define type parameter, which is a constraints of the another parameter of the same function.
 
 function getValue<T extends object, U extends keyof T>(obj: T, key: U) {
