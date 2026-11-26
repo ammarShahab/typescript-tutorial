@@ -125,7 +125,7 @@ const LOG_LEVEL = {
   WARN: "warning",
 } as const;
 
-// Converts the LOG_LEVEL to Union "Info" |"Error"
+// Converts the LOG_LEVEL to Union type "info" | "error" | "debug" | "warning"
 type LogLevel = (typeof LOG_LEVEL)[keyof typeof LOG_LEVEL];
 
 function messageLog(message: string, level: LogLevel) {
