@@ -26,7 +26,7 @@ enum Role {
 }
 
 const role = Role.Admin;
-console.log("role", role);
+console.log("role", role); //2
 
 // ii. String Enum (enums এ string value set করে দেয়া হয়।)
 // used for HTTP or API call status
