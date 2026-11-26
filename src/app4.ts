@@ -140,7 +140,7 @@ logLength2<string[]>(["b", "c", "d"]);
 
 // Constraints exercise in apiResponse.ts file
 
-// ! 11.a. KeyOf constraint with generics
+//! 11.a. KeyOf constraint with generics
 // ? keyof and Generic Constraints
 interface Vehicles {
   car: string;

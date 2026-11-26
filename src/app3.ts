@@ -142,7 +142,7 @@ function processInput(input: string | number) {
 processInput(" Hello ");
 processInput(10);
 
-//! 9.a typeof operator type guard
+//! 9.a. typeof operator type guard
 // definition: it is used to check the type of a variable at runtime. it is used to ensure that the code is type-safe and to avoid runtime errors. i.e same as type narrowing.
 
 function formatValue(value: string | number) {

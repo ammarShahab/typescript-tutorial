@@ -1,190 +1,125 @@
-//! 14. typescript OOP
+//! 14. Conditional Type
 
-// Basic concept of OOP
+// In TypeScript, conditional type is used to assign a type of the variable based on the condition.
 
-//! 14. a. Constructor
-class Person {
+// ? Syntax (commented due to showing error)
+// type a = Type extends anotherType ? TrueType : FalseType;
+
+// Explain the Syntax:
+/* 
+- Type extends anotherType evaluates first
+- is 'Type' is match with anotherType will set the variable "TrueType" nor "FalseType"
+- the extends keyword checks that "Type" contains same as "anotherType" i.e Type has all required properties of anotherType, with compatible types.
+*/
+
+// Basic example
+type Car = {
   name: string;
-  age: number;
-  constructor(name: string, age: number) {
-    this.name = name;
-    this.age = age;
-  }
+  model: number;
+  year: number;
+};
 
-  greet() {
-    console.log(
-      `Hello ${this.name}, I think your age is ${this.age} years old.`,
-    );
-  }
-}
+type Name = {
+  name: string;
+};
 
-const person1 = new Person("Adil", 26); //When a class is called with the new keyword, the resulting object is referred to as an instance of that class. Which is also called creating constructor.
-person1.greet();
-console.log(person1.name); //to access the property of the object
+type CarName = Car extends Name ? object : never;
 
-//! 14. b. Modifier (public, private, protected)
-// In class there are 3 types of modifiers
-/* *
- *i. public: accessible from anywhere
- *ii. private: accessible only within the class
- *iii. protected: accessible within the class and its subclasses
- */
+const carName: CarName = { name: "Ford" };
+// Here Car matches all property of Name type which is {name: string}
+console.log("Basic example without using Generics or Constraints: ", carName);
 
-//Example of public, private and protected modifiers
+// ? 14.a Generic conditional type
 
-class BankAccount {
-  public accountHolderName: string;
-  private balance: number;
-  protected accountType: string;
+// Example-1:
 
-  constructor(name: string, amount: number) {
-    this.accountHolderName = name;
-    this.balance = amount;
-    this.accountType = "Saving";
-  }
+type IsString<T> = T extends string ? string : any;
 
-  showBalance() {
-    console.log(
-      `${this.accountHolderName} account balance is ${this.balance}tk. His account type is ${this.accountType}.`,
-    );
-  }
-}
+let a: IsString<string> = "Hello";
+let b: IsString<boolean> = false;
+let c: IsString<"arham"> = "Arham";
 
-const user1 = new BankAccount("Arham", 1000);
-console.log("Account Holder Name", user1.accountHolderName); //can access public property from outside the class
-user1.showBalance(); //can access public property from outside the class
+console.log("Generic Conditional Type: ", a, b, c);
 
-// but u cannot access the private and protected property from outside the class
-// console.log(user1.balance); //due to private
-// console.log(user1.accountType); //due to protected
+// Example-2:
+type IsNumArray<T> = T extends number[] ? number : string;
 
-// Example of protected modifiers (accessible within the class and its subclasses)
-class SavingAccount extends BankAccount {
-  showAccountType() {
-    console.log(
-      `${this.accountHolderName}'s account type is ${this.accountType}.`,
-      // but if u want to access the balance property from outside the class according to following example, it will show error because balance is a private property which cannot be accessed from subclasses, only accessible within the class.
-      // `${this.accountHolderName}'s account type is ${this.accountType}. Balance is ${this.balance}tk.`
-    );
-  }
-}
+let num1: IsNumArray<number[]> = 9;
+let string_1: IsNumArray<string> = "Generic Condiotional";
+// let bool: IsNumArray<boolean[]> = true; //Type 'boolean' is not assignable to type 'string'.
 
-const user2 = new SavingAccount("Afnan", 1000);
-user2.showAccountType();
+console.log("Generic Conditional type: ", num1, string_1);
 
-//! 14. c. Private vs Protected Modifier Example
-// Private: NOT accessible in subclasses (only within the class itself)
-// Protected: Accessible in subclasses
+// ? 14.b Conditional type with Unions
+// Conditional types are particularly useful with the Union types, where they are automatically distributed with all the Union members
 
-class Vehicle {
-  private engineNumber: string; // private - only accessible within Vehicle class
-  protected brand: string; // protected - accessible in Vehicle and its subclasses
+// Example_1.a: When used with a union type, it applies to each member of the union
 
-  constructor(engineNumber: string, brand: string) {
-    this.engineNumber = engineNumber;
-    this.brand = brand;
-  }
+type toArray<T> = T extends any ? T[] : any;
 
-  showEngineNumber() {
-    console.log(`Engine Number: ${this.engineNumber}`);
-  }
-}
+type StringOrNumber = toArray<string | number>;
 
-class Car extends Vehicle {
-  private model: string;
+let arrays_1: StringOrNumber = [5, 9, 8];
+let arrays_2: StringOrNumber = ["Rahim", "Karim", "Jashim"];
+// let arrays_3: StringOrNumber = [true, false, true]; // Type 'boolean' is not assignable to type 'string | number'.
+// let normalData: StringOrNumber = "Rahim"; //Type 'string' is not assignable to type 'StringOrNumber'.
 
-  constructor(engineNumber: string, brand: string, model: string) {
-    super(engineNumber, brand);
-    this.model = model;
-  }
+console.log("Condiotional type with Union: ", arrays_1, arrays_2);
 
-  showCarDetails() {
-    // console.log(`Engine: ${this.engineNumber}`); // ✗ ERROR: Cannot access private property from parent class in the subclass
-    console.log(`Model: ${this.model}`); // ✓ Can access private property within the same class
-    console.log(`Brand: ${this.brand}`); // ✓ Can access protected property brand from parent class in the subclass
-  }
-}
+// Example_1.b: Use case
 
-const myCar = new Car("ENG123456", "Toyota", "Camry");
-myCar.showEngineNumber(); // ✓ Can call public method
-myCar.showCarDetails(); // ✓ Can call public method
-// console.log(myCar.engineNumber); // ✗ ERROR: Cannot access private property from outside the class
-// console.log(myCar.brand); // ✗ ERROR: Cannot access protected property from outside the class
+type AddPrefix<T> = T extends string ? `Prefix-${T}` : never;
 
-// But the best industry standard practice is using type modifiers
-class Employee {
-  constructor(
-    public name: string,
-    public age: number,
-    private _id: string,
-  ) {}
-  showId() {
-    console.log("Hasan ID is: ", this._id);
-  }
-}
+type Color = "Red" | "Green" | 404;
 
-const hasan = new Employee("Hasan", 35, "59004");
-console.log("type modifiers best practices", hasan);
-hasan.showId(); //access the private property from the class
+const Prefixed: AddPrefix<Color> = "Prefix-Green";
+const Prefixed_2: AddPrefix<Color> = "Prefix-Red";
+// const Prefixed_3: AddPrefix<Color> = 404; //Type '404' is not assignable to type '"Prefix-Red" | "Prefix-Green"'.
 
-//! 14. d. Inheritance
-// Inheritance is a mechanism in which a new class is created from an existing class. The new class is called a subclass and the existing class is called a superclass.
+// Example_2: Extracting string
 
-class Animal {
-  constructor(private name: string) {
-    // this.name = name;
-  }
-  move() {
-    return `${this.name} is moving`;
-  }
-}
+type ExtractString<T> = T extends string ? T : never;
 
-class Dog extends Animal {
-  bark() {
-    return "Woof Woof . . . ";
-  }
-}
+type StringOnly = ExtractString<string | number | "123" | boolean>;
 
-const mydog = new Dog("Tommy");
-console.log(`${mydog.move()} and barking ${mydog.bark()}`);
+let extractString_1: StringOnly = "Adbab"; //Allowed
+// let extractString_2: StringOnly = {}; //Type '{}' is not assignable to type 'string'.
+// let extractString_3: StringOnly = 123; //Type 'number' is not assignable to type 'string'.
 
-// when the property is not required for all subclasses use optional (?) at the end line
-class Creature {
-  constructor(
-    public name: string,
-    protected price: number,
-    private type?: string, //this optional sign should be at the end nor it will show error
-  ) {}
+// ? 14.c Conditional type with infer
+// Think as infer "pattern matches with captured group". TypeScript tells that if match the types of a certain shape capture the piece of that shape and give it a name. In a One-Sentence Version, infer lets you say to TypeScript: "If this type looks like Array<something>, call that something X so I can use it."
 
-  showCreatureInfo() {
-    console.log(
-      `${this.name} is a ${this.type} breed. It's price is ${this.price}$.`,
-    );
-  }
-}
+// The Analogy: A Funnel
+// Imagine pouring a type through a funnel that has a specific shape:
+/* 
+Type: string[]
+      ↓
+Funnel: Array<infer X>   ← "If it's an array, catch whatever is inside"
+      ↓
+Captured: X = string 
+*/
 
-const tommy = new Creature("Tommy", 500, "labrador");
-tommy.showCreatureInfo();
+// Example_1:
+type ArrayFruits<T> = T extends Array<infer X> ? X : never;
 
-// console.log(tommy.breed);
-// console.log(tommy.price);
+const apple: ArrayFruits<string[]> = "Apple";
+const num_1: ArrayFruits<number[]> = 9;
+// const num_2: ArrayFruits<number> = 5; //Type '5' is not assignable to type 'never'.
 
-class Cat extends Creature {
-  constructor(
-    name: string,
-    price: number,
-    private category: string,
-  ) {
-    super(name, price);
-  }
-  showCatInfo() {
-    console.log(
-      `${this.name} is a ${this.category} which costs ${this.price}$`,
-    );
-  }
-}
+// ? 14.d Constraints conditional type
 
-const kitty = new Cat("Kitty", 250, "Cat");
-kitty.showCatInfo();
-console.log(kitty.name);
-console.log(tommy.name);
+// Generics are used for reusable type. But if you want to reuse them for specific data type like number, array etc add constraints with genrics type.
+
+// Syntax:
+// type Constraint<T extends T1 | T2> = T extends Type1 ? Type1 : Type2;
+
+// Example_1:
+type NumberOrString<T extends number | string> = T extends number
+  ? number
+  : string;
+
+const number: NumberOrString<number> = 5;
+const string: NumberOrString<string> = "5";
+// const boolean: NumberOrString<boolean> = true; //Type 'boolean' does not satisfy the constraint 'string | number'
+
+console.log("Constraints conditional type: ", number, string);

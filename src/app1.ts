@@ -24,17 +24,17 @@
 // Static typing is a feature of TypeScript that allows you to specify the type of a variable, function, or object at compile time. This means that the type of a variable is checked before the code is executed, which can help catch errors early in the development process or in compile-time checks.
 
 //! 1. Primitives
-//! 1a. string
+//! 1.a. string
 let studentName: string = "Arham"; // specify the type of variable
 studentName = "Afnan"; // valid
 // studentName = 123; // invalid
 
-//! 1b. number
+//! 1.b. number
 let age: number = 21; // specify the type of variable
 // age = "21"; // invalid
 age = 3; // valid
 
-//! 1c. boolean
+//! 1.c. boolean
 let isStudent: boolean = true;
 isStudent = false; // valid
 // isStudent = "true"; // invalid
@@ -43,7 +43,7 @@ console.log(studentName, age, isStudent);
 
 //! 2. Non Primitives
 
-//! 2a. Array
+//! 2.a. Array
 
 let scores: number[] = [90, 85, 88]; // specify the type of array
 scores[0] = 999; // valid
@@ -58,7 +58,7 @@ console.log("conventional way of array declaration", employeeName);
 let names: Array<string> = ["Arham", "Afnan", "Ammar"];
 console.log("Alternative way for array declaration", names);
 
-//! 2b. tuples (fixed length array with known data type with maintaining the order)
+//! 2.b. tuples (fixed length array with known data type with maintaining the order)
 // it is used to store multiple values of different types in a single variable
 
 let universityStudent: [string, number, boolean] = ["Adnan", 24, true]; // specify the type of tuple
@@ -66,7 +66,7 @@ console.log("tuples example", universityStudent);
 
 //! 3. Special Types
 
-//! 3a. any type (not recommended, but it is used when we don't know the type of variable. but it is not safe to use any type because it can hold any type of value which can lead to runtime errors. it cannot be validated at compile time)
+//! 3.a. any type (not recommended, but it is used when we don't know the type of variable. but it is not safe to use any type because it can hold any type of value which can lead to runtime errors. it cannot be validated at compile time)
 // Note: When you want to disable type checking of any variable then use "any" type.
 
 let isLoggedIn: any = false; // specify the type of variable
@@ -75,11 +75,11 @@ isLoggedIn = "yes"; // valid
 console.log("any", isLoggedIn);
 
 // use case of any types
-//! 3a.i. JSON.parse returns "any" type because it does not recognise the type during compile time
+//! 3.a.i. JSON.parse returns "any" type because it does not recognise the type during compile time
 const result = JSON.parse('{"name" : "Alice", "age":"30"}');
 console.log(result);
 
-//! 3a.ii. variable without initialization
+//! 3.a.ii. variable without initialization
 // when a variable is declared without initializing any value, it is assigned the value of "undefined" by default and its type is "any"
 
 // example 1
@@ -94,7 +94,7 @@ let name: any = "Arham";
 name = 50;
 console.log("Any Type: ", name);
 
-//! 3b. unknown type (it is safer than "any" type because we have to check the type of variable before using it)
+//! 3.b. unknown type (it is safer than "any" type because we have to check the type of variable before using it)
 let data: unknown = "10";
 
 if (typeof data === "number") {
@@ -103,7 +103,7 @@ if (typeof data === "number") {
   console.log("data is not a number");
 }
 
-//! 3c. void type (it is used to specify that a function does not return any value i.e কোনো কিছু রিটার্ন করে না এমন ফাংশনের জন্য ব্যবহার করা হয়)
+//! 3.c. void type (it is used to specify that a function does not return any value i.e কোনো কিছু রিটার্ন করে না এমন ফাংশনের জন্য ব্যবহার করা হয়)
 function logMessage(action: string): void {
   console.log("void function", action);
   //   return "Non Void function";
@@ -111,14 +111,14 @@ function logMessage(action: string): void {
 
 logMessage("working");
 
-//! 3d. null and undefined types
+//! 3.d. null and undefined types
 let notAssigned: undefined = undefined;
 
 let emptyValue: null = null;
 
 // some exercise-1 in exercise.ts file
 
-//! 3e. Function type signature
+//! 3.e. Function type signature
 // Function type signature is a way to specify the type of a function. It is used to define the type of parameters and the return type of a function. It is also used to define the type of a variable that holds a function.
 let sayName: (name: string) => string; // specify the type of function
 
@@ -149,7 +149,7 @@ function welcomeMSG(name: string = "Guest"): string {
 console.log(welcomeMSG());
 console.log(welcomeMSG("Bob"));
 
-//! 3f. never type (advanced type)
+//! 3.f. never type (advanced type)
 // never type is used to specify that a function never returns a value. it is used in functions that always throw an error or have an infinite loop.
 
 try {
@@ -161,7 +161,7 @@ try {
   console.log("From Try catch block: ", error);
 }
 
-//! 3g. Nullish Coalescing and optional chaining
+//! 3.g. Nullish Coalescing and optional chaining
 // Nullish Coalescing - If the value is null or undefined it uses the default value
 function CheckUser(user?: string) {
   console.log("Nullish Coalescing: ", user ?? "Guest");
@@ -184,7 +184,7 @@ const employee = {
 console.log("Optional chaining: ", employee?.address?.city); //Dhaka
 // console.log("Optional chaining: ", employee?.address?.thana); //show error if not found
 
-//! 3h. Arrow function
+//! 3.h. Arrow function
 const squareNum = (a: number): number => a * a;
 console.log(squareNum(5));
 

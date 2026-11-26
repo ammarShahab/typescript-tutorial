@@ -108,7 +108,7 @@ const post2: Post = {
 
 console.log("Exercise of post2: ", post2.status);
 
-// ! 13. as const instead of enum
+//! 13. as const instead of enum
 
 // ? Why we use "as const" instead of enum
 /* 
